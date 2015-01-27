@@ -1,0 +1,1140 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>DFS(Depth-first search)</title>
+		<style>
+			canvas{
+				border: solid 1px green;
+			}
+		</style>
+	</head>
+	
+	<body>
+		
+		<form name = "DFSForm" id="DFSForm" >
+			<table>
+			<tr>
+				<td><p id = "chooseMode">1.設定模式：</p></td>  <td><input type="radio" name="modeChoice1" value="模擬模式" onClick = "modeChoice();">模擬模式</td>  <td><input type="radio" name="modeChoice1" value="測驗模式" onClick = "modeChoice();">測驗模式   </td>
+				<td><input type = "button"  value = "清除" onClick = "modeClear();"></td><td><p id="mode"></p></td>
+
+			</tr>
+			<tr>
+				<td><p id = "chooseGraph">2.設定圖形模式：</p></td>  <td><input type="radio" name="graph1" value="undirected graph" onClick = "graphChoice();">undirected graph</td>  <td><input type="radio" name="graph1" value="directed graph" onClick = "graphChoice();">directed graph   </td>
+				<td><input type = "button"  value = "清除" onClick = "graphClear();"></td><td><p id="graph"></p></td>
+			</tr>
+			</table>
+
+			<table>
+				<tr>
+					<td><p id = "setAdj">3.輸入鄰接矩陣資料：</p></td>  
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td></td>
+					<td><p>0</p></td>
+					<td><p>1</p></td>
+					<td><p>2</p></td>
+					<td><p>3</p></td>
+					<td><p>4</p></td>
+					<td rowspan = "7"><canvas id = "myGraph" width = 280 height = 280>Your browser does not support</canvas></td>
+
+					<td><p id = "relationship">5.各圓的關係</p></td>
+					
+				</tr>
+				<tr>
+					<td align="center"><p>0</p></td>
+					<td><input type=text value="0" id=0 size="5" readonly="readonly"></td>
+					<td><input type=text value="" id=1 size="5"></td>
+					<td><input type=text value="" id=2 size="5"></td>
+					<td><input type=text value="" id=3 size="5"></td>
+					<td><input type=text value="" id=4 size="5"></td>
+					<td align="center"><p>圓編號</p></td>
+					<td align="center"><p>d[u]</p></td>
+					<td align="center"><p>f[u]</p></td>
+					<td align="center"><p>pi[u]</p></td>
+					<td><p>堆疊目前狀況:</p></td>
+					<td><input type=text value="" id=queue size="15" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td align="center"><p>1</p></td>
+					<td><input type=text value="" id=5 size="5"></td>
+					<td><input type=text value="0" id=6 size="5" readonly="readonly"></td>
+					<td><input type=text value="" id=7 size="5"></td>
+					<td><input type=text value="" id=8 size="5"></td>
+					<td><input type=text value="" id=9 size="5"></td>
+					<td align="center"><p>0</p></td>
+					<td><input type=text value="" id=0circledu size="15" ></td>
+					<td><input type=text value="" id=0circlefu size="15" ></td>
+					<td><input type=text value="" id=0circlepiu size="15" ></td>
+				</tr>
+				<tr>
+					<td align="center"><p>2</p></td>
+					<td><input type=text value="" id=10 size="5"></td>
+					<td><input type=text value="" id=11 size="5"></td>
+					<td><input type=text value="0" id=12 size="5" readonly="readonly"></td>
+					<td><input type=text value="" id=13 size="5"></td>
+					<td><input type=text value="" id=14 size="5"></td>
+					<td align="center"><p>1</p></td>
+					<td><input type=text value="" id=1circledu size="15" ></td>
+					<td><input type=text value="" id=1circlefu size="15" ></td>
+					<td><input type=text value="" id=1circlepiu size="15" ></td>
+				</tr>
+				<tr>
+					<td align="center"><p>3</p></td>
+					<td><input type=text value="" id=15 size="5"></td>
+					<td><input type=text value="" id=16 size="5"></td>
+					<td><input type=text value="" id=17 size="5"></td>
+					<td><input type=text value="0" id=18 size="5" readonly="readonly"></td>
+					<td><input type=text value="" id=19 size="5"></td>
+					<td align="center"><p>2</p></td>
+					<td><input type=text value="" id=2circledu size="15" ></td>
+					<td><input type=text value="" id=2circlefu size="15" ></td>
+					<td><input type=text value="" id=2circlepiu size="15" ></td>
+				</tr>
+				<tr>
+					<td align="center"><p>4</p></td>
+					<td><input type=text value="" id=20 size="5"></td>
+					<td><input type=text value="" id=21 size="5"></td>
+					<td><input type=text value="" id=22 size="5"></td>
+					<td><input type=text value="" id=23 size="5"></td>
+					<td><input type=text value="0" id=24 size="5" readonly="readonly"></td>
+					<td align="center"><p>3</p></td>
+					<td><input type=text value="" id=3circledu size="15" ></td>
+					<td><input type=text value="" id=3circlefu size="15" ></td>
+					<td><input type=text value="" id=3circlepiu size="15" ></td>
+				</tr>
+				<tr>
+					<td><p></p></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td align="center"><p>4</p></td>
+					<td><input type=text value="" id=4circledu size="15" ></td>
+					<td><input type=text value="" id=4circlefu size="15" ></td>
+					<td><input type=text value="" id=4circlepiu size="15" ></td>
+				</tr>
+
+			</table>
+			<table>
+				<tr>
+					<td><input type = "button"  value = "輸入完成" onClick = "decideAdjMatrix();"></td> 
+					<td><input type = "button"  value = "隨機產生" onClick = "randomGenerateAdjMatrix();"></td>
+					<td><input type = "button"  value = "清除" onClick = "clearAdjMatrix();"></td> 
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><p id="state"></p></td>
+				</tr>
+				
+			</table>
+			<table>
+				<tr>
+					<td><p id = "nowState"></p></td>
+					<td><p id = "allState"></p></td>
+				</tr>
+				<tr>
+					<td>
+						<textarea name="Content" style="width:570px;height:100px;" id=currentStepDFS readonly="readonly" ></textarea>
+					</td>
+					<td>
+						<textarea name="Content" style="width:570px;height:100px;" id=allStepDFS readonly="readonly"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td><p id = "simulateUse">模擬模式用按鈕：</p></td> 
+								<td><input type = "button"  value = "下一步" onClick = "next();"></td> 
+								<td><input type = "button"  value = "一次做完" onClick = "doAll();"></td>
+								<td><input type = "button"  value = "全部清除" onClick = "clearAll();"></td> 
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table>	
+							<tr>
+								<td><p id = "testUse">測驗模式用按鈕：</p></td> 
+								<td><input type = "button"  value = "開始出題" onClick = "giveQuestion();"></td> 
+								<td><input type = "button"  value = "確認答案" onClick = "checkAnswer();"></td>
+								<td><input type = "button"  value = "全部清除" onClick = "clearAll();"></td> 
+							</tr>
+						</table>	
+					</td>
+				</tr>
+			</table>
+			
+		</form>
+
+		<script>
+
+			// The function will be invoke, when you open the HTML file
+			window.onload = function (){
+				clearAll();
+			}
+
+			var mode = -1; // 0 is simulate mode  , 1 is test mode
+			var graph = -1; // 0 is undirected graph , 1 is directed graph
+			var DFSstep = 0; // control the DFS step for the next button use.
+			var wrongInput = 0;
+			var isDecideAdjMatrix = 0;
+			var adjMatrix = []; // A two dimension array adjMatrix represents the graph.
+			var isAnswer = 0;
+			adjMatrix[0] = [0,0,0,0,0];
+			adjMatrix[1] = [0,0,0,0,0];
+			adjMatrix[2] = [0,0,0,0,0];
+			adjMatrix[3] = [0,0,0,0,0];
+			adjMatrix[4] = [0,0,0,0,0];
+
+			var circleDiscover = new Array(0,0,0,0,0); // record the circle wether is discovered.
+			var circledu = new Array(-1,-1,-1,-1,-1); // record the circle d[u].
+			var circlefu = new Array(3,4,5,6,7); // record the circle f[u].
+			var circlepiu = new Array(-1,-1,-1,-1,-1); // record the circle pi[u].
+
+			var du = 0;
+
+			var connectString = "";
+			var stackString = "";
+			var stackStringHandle;
+			var allStepString = "";
+			var string0 = "將所有頂點的d[u]都設為infinity，pi[u]都設為-1(NIL)";
+			var string1 = "現在頂點為";
+			var string2 = "佇列(Queue)是否為空呢?";
+			var string3 = "從佇列拿出最前頭的數為頂點";
+			var string4 = "現在和頂點";
+			var string5 = "連接的所有還未發現的頂點放入佇列";
+			var string6 = "頂點";
+			var string7 = "用紅色框框起來，並且它的d[u] = ";
+			var string8 = " 然後pi[u] = ";
+			var string9 = ",最後放入佇列 ";
+			var string10 = "頂點 ";
+			var string11 = "已經搜尋完畢，塗灰。";
+			var string12 = "Dequeue 1個頂點為";
+
+			function modeChoice(){
+				var form = document.getElementById("DFSForm");
+				var result = document.getElementById("mode");
+				clearAdjMatrix();
+			
+				for (var i = 0; i < form.modeChoice1.length; i++) {
+					if ( form.modeChoice1[i].checked ) {
+						result.innerHTML = "you selected " + form.modeChoice1[i].value;
+						mode = i;			
+						break;
+					}
+				}
+				//process();
+			}// end function modeChoice()
+			
+			function graphChoice(){
+				var form = document.getElementById("DFSForm");
+				var result = document.getElementById("graph");
+				clearAdjMatrix();
+				
+				for (var i = 0; i < form.graph1.length; i++) {
+					if ( form.graph1[i].checked ) {
+						graph = i;
+						result.innerHTML = form.graph1[i].value;
+						
+					}
+				}
+				//process();
+			}// end function graphChoice()
+			
+			function modeClear(){
+				var form = document.getElementById("DFSForm");
+				var result = document.getElementById("mode");
+				for (var i = 0; i < form.modeChoice1.length; i++) {
+					form.modeChoice1[i].checked = false;
+				}
+				result.innerHTML = "";
+				mode = -1;
+				//process();
+				
+			}// end function modeClear()
+			
+			function graphClear(){
+				var form = document.getElementById("DFSForm");
+				var result = document.getElementById("graph");
+				for (var i = 0; i < form.graph1.length; i++) {
+					form.graph1[i].checked = false;
+				}
+				result.innerHTML = "";
+				graph = -1;
+				//process();
+			}// end function graphClear()
+
+			function decideAdjMatrix(){
+				if(isAnswer == 0){
+					clearGraph();
+					var count = 0;
+					wrongInput = 0;
+					document.getElementById("state").innerHTML = "";
+					if(mode == 0 || mode == 1){ // simulate and test
+						if(graph == 0){ // undirected graph
+							for(var i = 0; i < 3; i++){
+								for(var j = 0; j < adjMatrix[i].length; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										var input = document.getElementById(count);
+										var userInput = eval(input.value);
+										if(userInput != 0 && userInput != 1){
+											wrongInput = 1;
+										}
+										adjMatrix[i][j] = userInput;
+										count = count + 1;
+									}
+								}
+							}
+
+							for(var i = 3; i < 5; i++){
+								for(var j = 0; j < adjMatrix[i].length; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										var input = document.getElementById(count);
+										var userInput = eval(input.value);
+										if(userInput != 0 && userInput != 1){
+											wrongInput = 1;
+										}
+										adjMatrix[i][j] = userInput;
+										count = count + 1;
+									}
+								}
+							}
+
+							count = 0;
+							for(var i = 0; i < 5; i++){
+								for(var j = 0; j < adjMatrix[i].length; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										if(adjMatrix[i][j] != adjMatrix[j][i]){ // undirected graph is a symmetric matrix.
+											wrongInput = 1;
+										}
+										
+										count = count + 1;
+									}
+								}
+							}
+
+							if(wrongInput == 1){
+								clearAdjMatrix(); // User Input the wrong data.
+								document.getElementById("state").innerHTML = "你輸入的資料不正確";
+							}else{
+								isDecideAdjMatrix = 1;
+								drawGraph();
+							}
+						}else if(graph == 1){
+							for(var i = 0; i < 5; i++){
+								for(var j = 0; j < adjMatrix[i].length; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										var input = document.getElementById(count);
+										var userInput = eval(input.value);
+										if(userInput != 0 && userInput != 1){
+											wrongInput = 1;
+										}
+										adjMatrix[i][j] = userInput;
+										count = count + 1;
+									}
+								}
+							}
+							if(wrongInput == 1){
+								clearAdjMatrix(); // User Input the wrong data.
+								document.getElementById("state").innerHTML = "你輸入的資料不正確";
+							}else{
+								isDecideAdjMatrix = 1;
+								drawGraph();
+							}
+						}else{
+
+						}
+						//process();
+					}else{
+
+					}
+				}
+			}// end function decideAdjMatrix()
+
+			function randomGenerateAdjMatrix(){
+				if(isAnswer == 0){
+					clearGraph();
+					DFSstep = 0;
+					for(var k = 0; k < circleDiscover.length; k++){
+						circleDiscover[k] = 0;
+						circledu[k] = -1;
+						circlepiu[k] = -1;
+					}
+					var count = 0;
+					document.getElementById("state").innerHTML = "";
+					if(mode == 0 || mode == 1){ // simulate and test
+						if(graph == 0){ // undirected graph
+							for(var i = 0; i < 5; i++){
+								for(var j = i; j < 5; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										var n1 = Math.floor(Math.random()*2);
+										var input = document.getElementById(count);
+										input.value = n1;
+										adjMatrix[i][j] = n1;
+										count = count + 1;
+									}
+								}
+								count = count + i + 1;
+							}
+
+							count = 5;
+							for(var i = 1; i < 5; i++){
+								for(var j = 0; j < i; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										var input = document.getElementById(count);
+										input.value = adjMatrix[j][i];
+										adjMatrix[i][j] = adjMatrix[j][i];
+										count = count + 1;
+									}
+								}
+								count = count + (5 - i);
+							}
+							isDecideAdjMatrix = 1;
+							drawGraph();
+						}else if(graph == 1){
+							for(var i = 0; i < 5; i++){
+								for(var j = 0; j < adjMatrix[i].length; j++){
+									if(i == j){
+										count = count + 1;
+										continue; // for adj Matrix when i == j must 0
+									}else{
+										var n1 = Math.floor(Math.random()*2);
+										var input = document.getElementById(count);
+										input.value = n1;
+										adjMatrix[i][j] = n1;
+										count = count + 1;
+									}
+								}
+							}
+							isDecideAdjMatrix = 1;
+							drawGraph();
+						}else{
+
+						}
+						
+					}else{
+
+					}
+					//process();
+				}
+			}// end function randomGenerateAdjMatrix()
+
+			function clearAdjMatrix(){	
+				var count = 0;
+				for(var i = 0; i < 5; i++){
+					for(var j = 0; j < adjMatrix[i].length; j++){
+						if(i == j){
+							count = count + 1;
+							continue; // for adj Matrix when i == j must 0
+						}else{
+							
+							var input = document.getElementById(count);
+							input.value = "";
+							adjMatrix[i][j] = 0;
+							count = count + 1;
+						}
+					}
+				}
+
+				document.getElementById("0").value = 0;
+				document.getElementById("6").value = 0;
+				document.getElementById("12").value = 0;
+				document.getElementById("18").value = 0;
+				document.getElementById("24").value = 0;
+				
+				isDecideAdjMatrix = 0;
+				clearGraph();
+				//process();
+			}// end function clearAdjMatrix()
+
+			function drawGraph(){
+				/**
+				circledu[0] = 1;
+				circledu[1] = 1;
+				circledu[2] = 1;
+				circledu[3] = 1;
+				circledu[4] = 1;
+				circlefu[0] = 1;
+				circlefu[1] = 1;
+				circlefu[2] = 1;
+				circlefu[3] = 1;
+				circlefu[4] = 1;
+				*/ // test use.
+				var canvas = document.getElementById("myGraph"); // Catch the canvas
+				var ctx = canvas.getContext("2d"); // Draw all object in two dimension
+
+				ctx.font = "14px Verdana"; // Set the word size = 14px typeface = Verdana
+				ctx.fillText("0",20,20); // write the circle number.
+				ctx.fillText("1",244,20);
+				ctx.fillText("2",20,130);
+				ctx.fillText("3",244,130);
+				ctx.fillText("4",180,260);
+
+				/**
+				 *  1. circleDiscover[] = 0  the circle is not find.
+				 *  2. circleDiscover[] = 1  the circle is discovered, and should have the red circumference.
+				 *  3. circleDiscover[] = 2  the circle is done, and should be colored gray.
+				 */
+				if(circleDiscover[0] == 0){
+					ctx.beginPath();
+					ctx.arc(60,40,30,0,2 * 3.14); // the 0 circle
+					ctx.stroke();
+				}else if(circleDiscover[0] == 1){
+					ctx.beginPath();
+					ctx.arc(60,40,30,0,2 * 3.14); // the 0 circle
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.strokeStyle = "black";
+				}else if(circleDiscover[0] == 2){
+					ctx.beginPath();
+					ctx.arc(60,40,30,0,2 * 3.14); // the 0 circle
+					ctx.fillStyle = "gray";
+					ctx.fill();
+					ctx.fillStyle = "black";
+				}else{
+
+				}
+
+				if(circleDiscover[1] == 0){
+					ctx.beginPath();
+					ctx.arc(220,40,30,0,2 * 3.14); // the 1 circle
+					ctx.stroke();
+				}else if(circleDiscover[1] == 1){
+					ctx.beginPath();
+					ctx.arc(220,40,30,0,2 * 3.14); // the 1 circle
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.strokeStyle = "black";
+				}else if(circleDiscover[1] == 2){
+					ctx.beginPath();
+					ctx.arc(220,40,30,0,2 * 3.14); // the 1 circle
+					ctx.fillStyle = "gray";
+					ctx.fill();
+					ctx.fillStyle = "black";
+				}else{
+					
+				}
+
+				if(circleDiscover[2] == 0){
+					ctx.beginPath();
+					ctx.arc(60,150,30,0,2 * 3.14); // the 2 circle
+					ctx.stroke();
+				}else if(circleDiscover[2] == 1){
+					ctx.beginPath();
+					ctx.arc(60,150,30,0,2 * 3.14); // the 2 circle
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.strokeStyle = "black";
+				}else if(circleDiscover[2] == 2){
+					ctx.beginPath();
+					ctx.arc(60,150,30,0,2 * 3.14); // the 2 circle
+					ctx.fillStyle = "gray";
+					ctx.fill();
+					ctx.fillStyle = "black";
+				}else{
+					
+				}
+
+				if(circleDiscover[3] == 0){
+					ctx.beginPath();
+					ctx.arc(220,150,30,0,2 * 3.14); // the 3 circle
+					ctx.stroke();
+				}else if(circleDiscover[3] == 1){
+					ctx.beginPath();
+					ctx.arc(220,150,30,0,2 * 3.14); // the 3 circle
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.strokeStyle = "black";
+				}else if(circleDiscover[3] == 2){
+					ctx.beginPath();
+					ctx.arc(220,150,30,0,2 * 3.14); // the 3 circle
+					ctx.fillStyle = "gray";
+					ctx.fill();
+					ctx.fillStyle = "black";
+				}else{
+					
+				}
+
+				if(circleDiscover[4] == 0){
+					ctx.beginPath();
+					ctx.arc(140,240,30,0,2 * 3.14); // the 4 circle
+					ctx.stroke();
+				}else if(circleDiscover[4] == 1){
+					ctx.beginPath();
+					ctx.arc(140,240,30,0,2 * 3.14); // the 4 circle
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.strokeStyle = "black";
+				}else if(circleDiscover[4] == 2){
+					ctx.beginPath();
+					ctx.arc(140,240,30,0,2 * 3.14); // the 4 circle
+					ctx.fillStyle = "gray";
+					ctx.fill();
+					ctx.fillStyle = "black";
+				}else{
+					
+				}
+
+
+				/**
+				 *  When the circle d[u] is decided, it should be write.
+				 */
+				if(circledu[0] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText(circledu[0],50,40); // write the circle d[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circledu[1] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText(circledu[1],210,40); // write the circle d[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circledu[2] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText(circledu[2],50,150); // write the circle d[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circledu[3] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText(circledu[3],210,150); // write the circle d[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circledu[4] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText(circledu[4],130,240); // write the circle d[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				/**
+				 *  When the circle f[u] is decided, it should be write.
+				 */
+				if(circlefu[0] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText("/",63,40); 
+					ctx.fillText(circlefu[0],70,40); // write the circle f[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circlefu[1] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText("/",223,40);
+					ctx.fillText(circlefu[1],230,40); // write the circle f[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circlefu[2] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText("/",63,150);
+					ctx.fillText(circlefu[2],70,150); // write the circle f[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circlefu[3] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText("/",220,150);
+					ctx.fillText(circlefu[3],230,150); // write the circle f[u] number.
+					ctx.fillStyle = "black";
+				}
+
+				if(circlefu[4] != -1){
+					ctx.fillStyle = "#000066";
+					ctx.fillText("/",140,240);
+					ctx.fillText(circlefu[4],150,240); // write the circle f[u] number.
+					ctx.fillStyle = "black";
+				}
+
+
+
+				
+				if(graph == 0){ // undirected graph
+					if(adjMatrix[0][1] == 1){ // circle 0 to 1
+						ctx.beginPath();
+						ctx.moveTo(90,40);
+						ctx.lineTo(190,40);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[0][2] == 1){ // circle 0 to 2
+						ctx.beginPath();
+						ctx.moveTo(60,70);
+						ctx.lineTo(60,120);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[0][3] == 1){ // circle 0 to 3
+						ctx.beginPath();
+						ctx.moveTo(80,60);
+						ctx.lineTo(198,132);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[0][4] == 1){ // circle 0 to 4
+						ctx.beginPath();
+						ctx.moveTo(80,60);
+						ctx.lineTo(140,210);
+						ctx.stroke();
+					}
+
+
+					if(adjMatrix[1][2] == 1){ // circle 1 to 2
+						ctx.beginPath();
+						ctx.moveTo(205,63);
+						ctx.lineTo(87,135);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[1][3] == 1){ // circle 1 to 3
+						ctx.beginPath();
+						ctx.moveTo(220,70);
+						ctx.lineTo(220,120);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[1][4] == 1){ // circle 1 to 4
+						ctx.beginPath();
+						ctx.moveTo(205,63);
+						ctx.lineTo(140,210);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[2][3] == 1){ // circle 2 to 3
+						ctx.beginPath();
+						ctx.moveTo(90,150);
+						ctx.lineTo(190,150);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[2][4] == 1){ // circle 2 to 4
+						ctx.beginPath();
+						ctx.moveTo(80,170);
+						ctx.lineTo(140,210);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[3][4] == 1){ // circle 3 to 4
+						ctx.beginPath();
+						ctx.moveTo(205,175);
+						ctx.lineTo(158,215);
+						ctx.stroke();
+					}	
+				}else if(graph == 1){
+					if(adjMatrix[0][1] == 1){ // circle 0 to 1
+						ctx.beginPath();
+						ctx.moveTo(80,20);
+						ctx.lineTo(200,20);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(180,10);
+						ctx.lineTo(200,20);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(180,30);
+						ctx.lineTo(200,20);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[1][0] == 1){ // circle 1 to 0
+						ctx.beginPath();
+						ctx.moveTo(200,20);
+						ctx.lineTo(80,20);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(100,10);
+						ctx.lineTo(80,20);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(100,30);
+						ctx.lineTo(80,20);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[0][2] == 1){ // circle 0 to 2
+						ctx.beginPath();
+						ctx.moveTo(55,66);
+						ctx.lineTo(55,122);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(50,110);
+						ctx.lineTo(55,122);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(60,110);
+						ctx.lineTo(55,122);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[2][0] == 1){ // circle 2 to 0
+						ctx.beginPath();
+						ctx.moveTo(55,122);
+						ctx.lineTo(55,66);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(45,76);
+						ctx.lineTo(55,66);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(65,76);
+						ctx.lineTo(55,66);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[0][3] == 1){ // circle 0 to 3
+						ctx.beginPath();
+						ctx.moveTo(80,60);
+						ctx.lineTo(198,132);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(198,122);
+						ctx.lineTo(198,132);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(178,129);
+						ctx.lineTo(198,132);
+						ctx.stroke();
+					}
+
+
+					if(adjMatrix[3][0] == 1){ // circle 3 to 0
+						ctx.beginPath();
+						ctx.moveTo(198,132);
+						ctx.lineTo(80,60);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(100,55);
+						ctx.lineTo(80,60);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(95,76);
+						ctx.lineTo(80,60);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[0][4] == 1){ // circle 0 to 4
+						ctx.beginPath();
+						ctx.moveTo(75,63);
+						ctx.lineTo(140,210);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(120,190);
+						ctx.lineTo(140,210);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(140,190);
+						ctx.lineTo(140,210);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[4][0] == 1){ // circle 4 to 0
+						ctx.beginPath();
+						ctx.moveTo(140,210);
+						ctx.lineTo(75,63);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(70,79);
+						ctx.lineTo(75,63);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(89,79);
+						ctx.lineTo(75,63);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[1][2] == 1){ // circle 1 to 2
+						ctx.beginPath();
+						ctx.moveTo(205,63);
+						ctx.lineTo(87,135);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(87,125);
+						ctx.lineTo(87,135);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(95,145);
+						ctx.lineTo(87,135);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[2][1] == 1){ // circle 2 to 1
+						ctx.beginPath();
+						ctx.moveTo(87,135);
+						ctx.lineTo(205,63);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(190,58);
+						ctx.lineTo(205,63);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(200,75);
+						ctx.lineTo(205,63);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[1][3] == 1){ // circle 1 to 3
+						ctx.beginPath();
+						ctx.moveTo(220,70);
+						ctx.lineTo(220,120);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(210,110);
+						ctx.lineTo(220,120);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(230,110);
+						ctx.lineTo(220,120);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[3][1] == 1){ // circle 3 to 1
+						ctx.beginPath();
+						ctx.moveTo(220,120);
+						ctx.lineTo(220,70);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(210,80);
+						ctx.lineTo(220,70);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(230,80);
+						ctx.lineTo(220,70);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[1][4] == 1){ // circle 1 to 4
+						ctx.beginPath();
+						ctx.moveTo(190,40);
+						ctx.lineTo(145,212);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(143,200);
+						ctx.lineTo(145,212);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(155,200);
+						ctx.lineTo(145,212);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[4][1] == 1){ // circle 4 to 1
+						ctx.beginPath();
+						ctx.moveTo(145,212);
+						ctx.lineTo(190,40);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(182,45);
+						ctx.lineTo(190,40);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(190,60);
+						ctx.lineTo(190,40);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[2][3] == 1){ // circle 2 to 3
+						ctx.beginPath();
+						ctx.moveTo(90,150);
+						ctx.lineTo(190,150);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(180,140);
+						ctx.lineTo(190,150);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(180,160);
+						ctx.lineTo(190,150);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[3][2] == 1){ // circle 3 to 2
+						ctx.beginPath();
+						ctx.moveTo(190,150);
+						ctx.lineTo(90,150);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(100,140);
+						ctx.lineTo(90,150);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(100,160);
+						ctx.lineTo(90,150);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[2][4] == 1){ // circle 2 to 4
+						ctx.beginPath();
+						ctx.moveTo(80,170);
+						ctx.lineTo(120,220);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(90,210);
+						ctx.lineTo(120,220);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(115,200);
+						ctx.lineTo(120,220);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[4][2] == 1){ // circle 4 to 2
+						ctx.beginPath();
+						ctx.moveTo(120,220);
+						ctx.lineTo(80,170);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(80,190);
+						ctx.lineTo(80,170);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(95,180);
+						ctx.lineTo(80,170);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[3][4] == 1){ // circle 3 to 4
+						ctx.beginPath();
+						ctx.moveTo(205,175);
+						ctx.lineTo(158,215);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(165,200);
+						ctx.lineTo(158,215);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(188,210);
+						ctx.lineTo(158,215);
+						ctx.stroke();
+					}
+
+					if(adjMatrix[4][3] == 1){ // circle 4 to 3
+						ctx.beginPath();
+						ctx.moveTo(158,215);
+						ctx.lineTo(205,175);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(180,185);
+						ctx.lineTo(205,175);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(205,195);
+						ctx.lineTo(205,175);
+						ctx.stroke();
+					}
+
+				}else{
+
+				}
+
+			}// end function drawGraph()
+
+			function clearGraph(){
+				var canvas = document.getElementById("myGraph");
+				var ctx = canvas.getContext("2d");
+				ctx.clearRect(0,0,canvas.width,canvas.height);
+			}// end function clearGraph()
+
+			function clearAll(){
+				document.getElementById("0circledu").value = "";
+				document.getElementById("0circlefu").value = "";
+				document.getElementById("0circlepiu").value = "";
+				document.getElementById("1circledu").value = "";
+				document.getElementById("1circlefu").value = "";
+				document.getElementById("1circlepiu").value = "";
+				document.getElementById("2circledu").value = "";
+				document.getElementById("2circlefu").value = "";
+				document.getElementById("2circlepiu").value = "";
+				document.getElementById("3circledu").value = "";
+				document.getElementById("3circlefu").value = "";
+				document.getElementById("3circlepiu").value = "";
+				document.getElementById("4circledu").value = "";
+				document.getElementById("4circlefu").value = "";
+				document.getElementById("4circlepiu").value = "";
+				document.getElementById("queue").value = "";
+				DFSstep = 0;
+				mode = -1;
+				graph = -1;
+				clearAdjMatrix();
+				wrongInput = 0;
+				for(var k = 0; k < circleDiscover.length; k++){
+					circleDiscover[k] = 0;
+					circledu[k] = -1;
+					circlefu[k] = -1;
+					circlepiu[k] = -1;
+				}
+				modeClear();
+				graphClear();
+				connectString = "";
+				stackString = "";
+				isDecideAdjMatrix = 0;
+				isAnswer = 0;
+				//process();
+				allStepString = "";
+			}// end function clearAll()
+
+		</script>
+	</body>
+</html>
