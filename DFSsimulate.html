@@ -54,7 +54,7 @@
 					<td align="center"><p>f[u]</p></td>
 					<td align="center"><p>pi[u]</p></td>
 					<td><p>堆疊目前狀況:</p></td>
-					<td><input type=text value="" id=queue size="15" readonly="readonly"></td>
+					<td><input type=text value="" id=stack size="15" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td align="center"><p>1</p></td>
@@ -196,24 +196,32 @@
 			var circlepiu = new Array(-1,-1,-1,-1,-1); // record the circle pi[u].
 
 			var du = 0;
+			var u = -1;
+			var time = 0;
+			var find = -1;
 
 			var connectString = "";
 			var stackString = "";
 			var stackStringHandle;
 			var allStepString = "";
-			var string0 = "將所有頂點的d[u]都設為infinity，pi[u]都設為-1(NIL)";
+			var string0 = "將所有頂點的d[u]都設為-1(NIL)，pi[u]都設為-1(NIL)，f[u]都設為-1(NIL)";
 			var string1 = "現在頂點為";
-			var string2 = "佇列(Queue)是否為空呢?";
-			var string3 = "從佇列拿出最前頭的數為頂點";
-			var string4 = "現在和頂點";
-			var string5 = "連接的所有還未發現的頂點放入佇列";
+			var string2 = "堆疊(Stack)是否為空呢?";
+			var string3 = "在圖中找尋尚未發現的點";
+			var string4 = "找到的點為頂點";
+			var string5 = "現在開始找尋與";
 			var string6 = "頂點";
-			var string7 = "用紅色框框起來，並且它的d[u] = ";
-			var string8 = " 然後pi[u] = ";
-			var string9 = ",最後放入佇列 ";
-			var string10 = "頂點 ";
-			var string11 = "已經搜尋完畢，塗灰。";
-			var string12 = "Dequeue 1個頂點為";
+			var string7 = "有連接的點";
+			var string8 = "找到的一個點為頂點";
+			var string9 = "將它的pi[u]設為 ";
+			var string10 = "d[u]設為 ";
+			var string11 = "，塗灰。";
+			var string12 = "並且f[u]設為 ";
+			var string13 = "從堆疊pop一個頂點為頂點";
+			var string14 = "是否所有頂點已經找完呢? ";
+			var string15 = "找不到與";
+			var string16 = "連接的未發現的頂點";
+			var string17 = "現在堆疊為空，再回去找尋圖上的未發現點";
 
 			function modeChoice(){
 				var form = document.getElementById("DFSForm");
@@ -374,6 +382,7 @@
 					for(var k = 0; k < circleDiscover.length; k++){
 						circleDiscover[k] = 0;
 						circledu[k] = -1;
+						circlefu[k] = -1;
 						circlepiu[k] = -1;
 					}
 					var count = 0;
@@ -1091,6 +1100,165 @@
 
 			}// end function drawGraph()
 
+			function next(){
+				clearGraph();
+				if(mode == 0){ // simulate and test
+					if(graph == 0 || graph == 1){ // undirected graph
+						if(isDecideAdjMatrix == 1 && DFSstep != 8){
+							if(DFSstep == 0){
+								document.getElementById("0circledu").value = "-1";
+								document.getElementById("0circlepiu").value = "-1";
+								document.getElementById("0circlefu").value = "-1";
+								document.getElementById("1circledu").value = "-1";
+								document.getElementById("1circlepiu").value = "-1";
+								document.getElementById("1circlefu").value = "-1";
+								document.getElementById("2circledu").value = "-1";
+								document.getElementById("2circlepiu").value = "-1";
+								document.getElementById("2circlefu").value = "-1";
+								document.getElementById("3circledu").value = "-1";
+								document.getElementById("3circlepiu").value = "-1";
+								document.getElementById("3circlefu").value = "-1";
+								document.getElementById("4circledu").value = "-1";
+								document.getElementById("4circlepiu").value = "-1";
+								document.getElementById("4circlefu").value = "-1";
+								
+								allStepString = allStepString + "現在開始進行 " + document.getElementById("DFSForm").graph1[graph].value + " 的DFS(深度優先搜尋)\n\n";
+								document.getElementById("currentStepDFS").innerHTML = allStepString + string0;
+								allStepString = document.getElementById("currentStepDFS").value;
+								document.getElementById("allStepDFS").innerHTML = allStepString;
+								drawGraph();
+								DFSstep = 1;
+							}else if(DFSstep == 1){
+								document.getElementById("currentStepDFS").innerHTML = string3;
+								for(var e = 0; e < circleDiscover.length; e++){
+									if(circleDiscover[e] == 0){
+										u = e;	
+										stackString = stackString + u; // The stack must empty.			
+										DFSstep = 3;
+										document.getElementById("stack").value = stackString;
+										break;
+									}
+								}
+
+								if(DFSstep == 3){
+
+								}else{
+									DFSstep = 2;
+								}
+								drawGraph();
+							}else if(DFSstep == 2){
+								document.getElementById("currentStepDFS").innerHTML = "現在圖已經搜尋完畢，結束DFS";
+								drawGraph();
+							}else if(DFSstep == 3){
+								circleDiscover[u] = 1;
+								find = -1;
+								time = time + 1;
+								var recordString = string4 + u + " \n用紅色圈圈圈起來，並且d[u]設為" + time + "\n";
+								circleDiscover[u] = 1;
+								circledu[u] = time;
+								var formString = u + "circledu";
+								document.getElementById(formString).value = time;
+
+								
+
+								DFSstep = 5;
+								drawGraph();
+								document.getElementById("currentStepDFS").innerHTML = recordString;
+
+							}else if(DFSstep == 4){
+								var recordString = "";
+								stackStringHandle = (document.getElementById("stack").value).split(",");
+								if(stackStringHandle[0] == "0"){
+									u = stackStringHandle[0];
+								}else if(stackStringHandle[0] == "1"){
+									u = stackStringHandle[0];
+								}else if(stackStringHandle[0] == "2"){
+									u = stackStringHandle[0];
+								}else if(stackStringHandle[0] == "3"){
+									u = stackStringHandle[0];
+								}else if(stackStringHandle[0] == "4"){
+									u = stackStringHandle[0];
+								}else{
+									DFSstep = 1;
+								}
+
+								if(DFSstep == 4){
+									time = time + 1;
+									circleDiscover[u] = 2;
+									recordString = string13 + stackStringHandle[0] + string11 + string12 + time;
+									formString = stackStringHandle[0] + "circlefu";
+									document.getElementById(formString).value = time;
+									circlefu[stackStringHandle[0]] = time;
+
+									connectStackString();
+									document.getElementById("stack").value = stackString;
+									stackStringHandle = (document.getElementById("stack").value).split(",");
+									if(stackStringHandle[0] == "0" || stackStringHandle[0] == "1" || stackStringHandle[0] == "2" || stackStringHandle[0] == "3" || stackStringHandle[0] == "4"){
+										u = stackStringHandle[0];
+										DFSstep = 5;
+									}else{
+										DFSstep = 1;
+									}
+									
+								}else{
+									recordString = string17;
+									DFSstep = 1;
+								}
+								document.getElementById("currentStepDFS").innerHTML = recordString;
+								drawGraph();
+
+							}else if(DFSstep == 5){
+								var recordString = "";
+								recordString = recordString + string5 + string6 + u + string7; 
+								for(var e = 0; e < circleDiscover.length; e++){
+									if(adjMatrix[u][e] == 1){
+										if(circleDiscover[e] == 0){
+											find = 1;
+											formString = e + "circlepiu";
+											document.getElementById(formString).value = u;
+											recordString = recordString + "\n---> " + string8 + e + string9 + u;
+											circlepiu[e] = u;
+											stackString = e + "," + stackString;
+											document.getElementById("stack").value = stackString;
+											u = e;
+											DFSstep = 3; // rewrite the recursive patrion from algorithm.
+											break;
+										}
+									}
+								}
+
+								if(find == 1){
+
+								}else{
+									recordString = recordString + "\n" + string15 + u + string16; 
+									DFSstep = 4;// ready to pop an element from stack
+								}
+								drawGraph();
+								document.getElementById("currentStepDFS").innerHTML = recordString;
+							}else{
+
+							}
+						}// end if
+					}// end if
+				}// end if
+			}// end function next
+
+			function connectStackString(){
+				stackStringHandle = stackString.split(",");
+				stackString = "";
+				for(var i = 1; i < stackStringHandle.length; i++){
+					if(stackStringHandle[i] == "0" || stackStringHandle[i] == "1" || stackStringHandle[i] == "2" || stackStringHandle[i] == "3" || stackStringHandle[i] == "4"){
+						if(i == (stackStringHandle.length - 1)){
+							stackString = stackString + stackStringHandle[i];
+						}else{
+							stackString = stackString + stackStringHandle[i] + ",";
+						}
+					}else{
+
+					}
+				}
+			}// end function connectStackString()
+
 			function clearGraph(){
 				var canvas = document.getElementById("myGraph");
 				var ctx = canvas.getContext("2d");
@@ -1098,6 +1266,9 @@
 			}// end function clearGraph()
 
 			function clearAll(){
+				time = 0;
+				document.getElementById("currentStepDFS").innerHTML = "";
+				document.getElementById("allStepDFS").innerHTML = "";
 				document.getElementById("0circledu").value = "";
 				document.getElementById("0circlefu").value = "";
 				document.getElementById("0circlepiu").value = "";
@@ -1113,7 +1284,7 @@
 				document.getElementById("4circledu").value = "";
 				document.getElementById("4circlefu").value = "";
 				document.getElementById("4circlepiu").value = "";
-				document.getElementById("queue").value = "";
+				document.getElementById("stack").value = "";
 				DFSstep = 0;
 				mode = -1;
 				graph = -1;
