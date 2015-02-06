@@ -15,12 +15,12 @@
 			<table>
 			<tr>
 				<td><p id = "chooseMode">1.設定模式：</p></td>  <td><input type="radio" name="modeChoice1" value="模擬模式" onClick = "modeChoice();">模擬模式</td>  <td><input type="radio" name="modeChoice1" value="測驗模式" onClick = "modeChoice();">測驗模式   </td>
-				<td><input type = "button"  value = "清除" onClick = "modeClear();"></td><td><p id="mode"></p></td>
+				<td><p id="mode"></p></td>
 
 			</tr>
 			<tr>
 				<td><p id = "chooseGraph">2.設定圖形模式：</p></td>  <td><input type="radio" name="graph1" value="undirected graph" onClick = "graphChoice();">undirected graph</td>  <td><input type="radio" name="graph1" value="directed graph" onClick = "graphChoice();">directed graph   </td>
-				<td><input type = "button"  value = "清除" onClick = "graphClear();"></td><td><p id="graph"></p></td>
+				<td><p id="graph"></p></td>
 			</tr>
 			</table>
 
@@ -120,9 +120,9 @@
 			</table>
 			<table>
 				<tr>
-					<td><input type = "button"  value = "輸入完成" onClick = "decideAdjMatrix();"></td> 
-					<td><input type = "button"  value = "隨機產生" onClick = "randomGenerateAdjMatrix();"></td>
-					<td><input type = "button"  value = "清除" onClick = "clearAdjMatrix();"></td> 
+					<td><input type = "button"  value = "輸入完成" onClick = "decideAdjMatrix();" id = "inputComplete" ></td> 
+					<td><input type = "button"  value = "隨機產生" onClick = "randomGenerateAdjMatrix();" id = "randomInput" ></td>
+					<td><input type = "button"  value = "清除" onClick = "clearAdjMatrix();" id = "clearInput" ></td> 
 				</tr>
 			</table>
 			<table>
@@ -149,9 +149,9 @@
 						<table>
 							<tr>
 								<td><p id = "simulateUse">模擬模式用按鈕：</p></td> 
-								<td><input type = "button"  value = "下一步" onClick = "next();"></td> 
-								<td><input type = "button"  value = "一次做完" onClick = "doAll();"></td>
-								<td><input type = "button"  value = "全部清除" onClick = "clearAll();"></td> 
+								<td><input type = "button"  value = "下一步" onClick = "next();" id = "simNext" ></td> 
+								<td><input type = "button"  value = "一次做完" onClick = "doAll();" id = "simAll" ></td>
+								<td><input type = "button"  value = "全部清除" onClick = "clearAll();" id = "simClear" ></td> 
 							</tr>
 						</table>
 					</td>
@@ -159,9 +159,9 @@
 						<table>	
 							<tr>
 								<td><p id = "testUse">測驗模式用按鈕：</p></td> 
-								<td><input type = "button"  value = "開始出題" onClick = "giveQuestion();"></td> 
-								<td><input type = "button"  value = "確認答案" onClick = "checkAnswer();"></td>
-								<td><input type = "button"  value = "全部清除" onClick = "clearAll();"></td> 
+								<td><input type = "button"  value = "開始出題" onClick = "giveQuestion();" id = "testStart" ></td> 
+								<td><input type = "button"  value = "確認答案" onClick = "checkAnswer();" id = "testCheck" ></td>
+								<td><input type = "button"  value = "全部清除" onClick = "clearAll();" id = "testClear" ></td> 
 							</tr>
 						</table>	
 					</td>
@@ -246,7 +246,7 @@
 				for (var i = 0; i < form.graph1.length; i++) {
 					if ( form.graph1[i].checked ) {
 						graph = i;
-						result.innerHTML = form.graph1[i].value;
+						result.innerHTML = "you selected " + form.graph1[i].value;
 						
 					}
 				}
@@ -760,47 +760,47 @@
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(180,10);
+						ctx.moveTo(190,15);
 						ctx.lineTo(200,20);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(180,30);
+						ctx.moveTo(190,25);
 						ctx.lineTo(200,20);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[1][0] == 1){ // circle 1 to 0
 						ctx.beginPath();
-						ctx.moveTo(200,20);
-						ctx.lineTo(80,20);
+						ctx.moveTo(192,30);
+						ctx.lineTo(88,30);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(100,10);
-						ctx.lineTo(80,20);
+						ctx.moveTo(95,25);
+						ctx.lineTo(90,30);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(100,30);
-						ctx.lineTo(80,20);
+						ctx.moveTo(95,35);
+						ctx.lineTo(90,30);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[0][2] == 1){ // circle 0 to 2
 						ctx.beginPath();
-						ctx.moveTo(55,66);
-						ctx.lineTo(55,122);
+						ctx.moveTo(40,60);
+						ctx.lineTo(40,127);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(30,110);
+						ctx.lineTo(40,127);
 						ctx.stroke();
 
 						ctx.beginPath();
 						ctx.moveTo(50,110);
-						ctx.lineTo(55,122);
-						ctx.stroke();
-
-						ctx.beginPath();
-						ctx.moveTo(60,110);
-						ctx.lineTo(55,122);
+						ctx.lineTo(40,127);
 						ctx.stroke();
 					}
 
@@ -811,30 +811,30 @@
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(45,76);
+						ctx.moveTo(50,76);
 						ctx.lineTo(55,66);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(65,76);
+						ctx.moveTo(60,76);
 						ctx.lineTo(55,66);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[0][3] == 1){ // circle 0 to 3
 						ctx.beginPath();
-						ctx.moveTo(80,60);
-						ctx.lineTo(198,132);
+						ctx.moveTo(90,50);
+						ctx.lineTo(208,122);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(198,122);
-						ctx.lineTo(198,132);
+						ctx.moveTo(208,112);
+						ctx.lineTo(208,122);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(178,129);
-						ctx.lineTo(198,132);
+						ctx.moveTo(190,120);
+						ctx.lineTo(208,122);
 						ctx.stroke();
 					}
 
@@ -846,7 +846,7 @@
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(100,55);
+						ctx.moveTo(90,55);
 						ctx.lineTo(80,60);
 						ctx.stroke();
 
@@ -863,115 +863,115 @@
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(120,190);
+						ctx.moveTo(130,200);
 						ctx.lineTo(140,210);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(140,190);
+						ctx.moveTo(140,200);
 						ctx.lineTo(140,210);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[4][0] == 1){ // circle 4 to 0
 						ctx.beginPath();
-						ctx.moveTo(140,210);
-						ctx.lineTo(75,63);
+						ctx.moveTo(130,210);
+						ctx.lineTo(70,68);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(70,79);
-						ctx.lineTo(75,63);
+						ctx.moveTo(65,80);
+						ctx.lineTo(70,68);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(89,79);
-						ctx.lineTo(75,63);
+						ctx.moveTo(79,74);
+						ctx.lineTo(70,68);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[1][2] == 1){ // circle 1 to 2
 						ctx.beginPath();
-						ctx.moveTo(205,63);
-						ctx.lineTo(87,135);
+						ctx.moveTo(220,66);
+						ctx.lineTo(89,150);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(87,125);
-						ctx.lineTo(87,135);
+						ctx.moveTo(93,140);
+						ctx.lineTo(89,150);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(95,145);
-						ctx.lineTo(87,135);
+						ctx.moveTo(102,148);
+						ctx.lineTo(89,150);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[2][1] == 1){ // circle 2 to 1
 						ctx.beginPath();
-						ctx.moveTo(87,135);
-						ctx.lineTo(205,63);
+						ctx.moveTo(89,140);
+						ctx.lineTo(207,66);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(190,58);
-						ctx.lineTo(205,63);
+						ctx.moveTo(192,63);
+						ctx.lineTo(205,66);
 						ctx.stroke();
 
 						ctx.beginPath();
 						ctx.moveTo(200,75);
-						ctx.lineTo(205,63);
+						ctx.lineTo(205,66);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[1][3] == 1){ // circle 1 to 3
 						ctx.beginPath();
-						ctx.moveTo(220,70);
-						ctx.lineTo(220,120);
+						ctx.moveTo(240,60);
+						ctx.lineTo(240,130);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(210,110);
-						ctx.lineTo(220,120);
+						ctx.moveTo(235,120);
+						ctx.lineTo(240,130);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(230,110);
-						ctx.lineTo(220,120);
+						ctx.moveTo(245,120);
+						ctx.lineTo(240,130);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[3][1] == 1){ // circle 3 to 1
 						ctx.beginPath();
-						ctx.moveTo(220,120);
-						ctx.lineTo(220,70);
+						ctx.moveTo(230,122);
+						ctx.lineTo(230,68);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(210,80);
-						ctx.lineTo(220,70);
+						ctx.moveTo(225,80);
+						ctx.lineTo(230,68);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(230,80);
-						ctx.lineTo(220,70);
+						ctx.moveTo(235,80);
+						ctx.lineTo(230,68);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[1][4] == 1){ // circle 1 to 4
 						ctx.beginPath();
-						ctx.moveTo(190,40);
-						ctx.lineTo(145,212);
-						ctx.stroke();
-
-						ctx.beginPath();
-						ctx.moveTo(143,200);
-						ctx.lineTo(145,212);
+						ctx.moveTo(195,51);
+						ctx.lineTo(158,215);
 						ctx.stroke();
 
 						ctx.beginPath();
 						ctx.moveTo(155,200);
-						ctx.lineTo(145,212);
+						ctx.lineTo(158,215);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(165,210);
+						ctx.lineTo(158,215);
 						ctx.stroke();
 					}
 
@@ -994,102 +994,102 @@
 
 					if(adjMatrix[2][3] == 1){ // circle 2 to 3
 						ctx.beginPath();
-						ctx.moveTo(90,150);
-						ctx.lineTo(190,150);
+						ctx.moveTo(82,170);
+						ctx.lineTo(200,170);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(180,140);
-						ctx.lineTo(190,150);
+						ctx.moveTo(190,165);
+						ctx.lineTo(200,170);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(180,160);
-						ctx.lineTo(190,150);
+						ctx.moveTo(190,175);
+						ctx.lineTo(200,170);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[3][2] == 1){ // circle 3 to 2
 						ctx.beginPath();
-						ctx.moveTo(190,150);
-						ctx.lineTo(90,150);
+						ctx.moveTo(191,160);
+						ctx.lineTo(88,160);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(100,140);
-						ctx.lineTo(90,150);
+						ctx.moveTo(100,155);
+						ctx.lineTo(90,160);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(100,160);
-						ctx.lineTo(90,150);
+						ctx.moveTo(100,165);
+						ctx.lineTo(90,160);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[2][4] == 1){ // circle 2 to 4
 						ctx.beginPath();
-						ctx.moveTo(80,170);
+						ctx.moveTo(76,173);
 						ctx.lineTo(120,220);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(90,210);
+						ctx.moveTo(93,210);
 						ctx.lineTo(120,220);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(115,200);
+						ctx.moveTo(115,203);
 						ctx.lineTo(120,220);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[4][2] == 1){ // circle 4 to 2
 						ctx.beginPath();
-						ctx.moveTo(120,220);
-						ctx.lineTo(80,170);
+						ctx.moveTo(110,240);
+						ctx.lineTo(60,180);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(80,190);
-						ctx.lineTo(80,170);
+						ctx.moveTo(56,187);
+						ctx.lineTo(60,180);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(95,180);
-						ctx.lineTo(80,170);
+						ctx.moveTo(73,185);
+						ctx.lineTo(60,180);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[3][4] == 1){ // circle 3 to 4
 						ctx.beginPath();
-						ctx.moveTo(205,175);
-						ctx.lineTo(158,215);
+						ctx.moveTo(220,180);
+						ctx.lineTo(170,240);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(165,200);
-						ctx.lineTo(158,215);
+						ctx.moveTo(172,232);
+						ctx.lineTo(170,240);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(188,210);
-						ctx.lineTo(158,215);
+						ctx.moveTo(177,238);
+						ctx.lineTo(170,240);
 						ctx.stroke();
 					}
 
 					if(adjMatrix[4][3] == 1){ // circle 4 to 3
 						ctx.beginPath();
-						ctx.moveTo(158,215);
+						ctx.moveTo(164,221);
 						ctx.lineTo(205,175);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(180,185);
+						ctx.moveTo(181,183);
 						ctx.lineTo(205,175);
 						ctx.stroke();
 
 						ctx.beginPath();
-						ctx.moveTo(205,195);
+						ctx.moveTo(204,194);
 						ctx.lineTo(205,175);
 						ctx.stroke();
 					}
@@ -1149,6 +1149,7 @@
 							}else if(DFSstep == 2){
 								document.getElementById("currentStepDFS").innerHTML = "現在圖已經搜尋完畢，結束DFS";
 								drawGraph();
+								DFSstep = 6;
 							}else if(DFSstep == 3){
 								circleDiscover[u] = 1;
 								find = -1;
@@ -1236,6 +1237,7 @@
 								drawGraph();
 								document.getElementById("currentStepDFS").innerHTML = recordString;
 							}else{
+								drawGraph();
 
 							}
 						}// end if
@@ -1258,6 +1260,18 @@
 					}
 				}
 			}// end function connectStackString()
+
+			function doAll(){
+				if(mode == 0){ // simulate
+					if(graph == 0 || graph == 1){ // graph
+						if(isDecideAdjMatrix == 1){ // is decide the adj matrix
+							while(DFSstep != 6){ // the loop will stop when the DFSstep equal to SIX.
+								next();
+							}
+						}
+					}
+				}
+			}// end function doAll()
 
 			function clearGraph(){
 				var canvas = document.getElementById("myGraph");
