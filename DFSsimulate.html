@@ -479,18 +479,7 @@
 			}// end function clearAdjMatrix()
 
 			function drawGraph(){
-				/**
-				circledu[0] = 1;
-				circledu[1] = 1;
-				circledu[2] = 1;
-				circledu[3] = 1;
-				circledu[4] = 1;
-				circlefu[0] = 1;
-				circlefu[1] = 1;
-				circlefu[2] = 1;
-				circlefu[3] = 1;
-				circlefu[4] = 1;
-				*/ // test use.
+				
 				var canvas = document.getElementById("myGraph"); // Catch the canvas
 				var ctx = canvas.getContext("2d"); // Draw all object in two dimension
 
@@ -605,6 +594,9 @@
 				}else{
 					
 				}
+
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "#000000";
 
 
 				/**
@@ -753,345 +745,754 @@
 						ctx.stroke();
 					}	
 				}else if(graph == 1){
-					if(adjMatrix[0][1] == 1){ // circle 0 to 1
-						ctx.beginPath();
-						ctx.moveTo(80,20);
-						ctx.lineTo(200,20);
-						ctx.stroke();
+					if(adjMatrix[0][1] >= 1){ // circle 0 to 1
 
-						ctx.beginPath();
-						ctx.moveTo(190,15);
-						ctx.lineTo(200,20);
-						ctx.stroke();
+						if(adjMatrix[0][1] <= 4){
+							if(adjMatrix[0][1] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[0][1] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[0][1] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(80,20);
+							ctx.lineTo(200,20);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(190,25);
-						ctx.lineTo(200,20);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(190,15);
+							ctx.lineTo(200,20);
+							ctx.stroke();
+
+							ctx.beginPath();
+							ctx.moveTo(190,25);
+							ctx.lineTo(200,20);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 80,20, 200,20); // cross edge
+							dashedLine("myGraph", 190,15, 200,20); 
+							dashedLine("myGraph", 190,25, 200,20); 
+
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[1][0] == 1){ // circle 1 to 0
-						ctx.beginPath();
-						ctx.moveTo(192,30);
-						ctx.lineTo(88,30);
-						ctx.stroke();
+						if(adjMatrix[1][0] <= 4){
+							if(adjMatrix[1][0] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[1][0] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[1][0] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(192,30);
+							ctx.lineTo(88,30);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(95,25);
-						ctx.lineTo(90,30);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(95,25);
+							ctx.lineTo(90,30);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(95,35);
-						ctx.lineTo(90,30);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(95,35);
+							ctx.lineTo(90,30);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 192,30, 88,30); // cross edge
+							dashedLine("myGraph", 95,25, 90,30); 
+							dashedLine("myGraph", 95,35, 90,30); 
+
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
+						
 					}
 
 					if(adjMatrix[0][2] == 1){ // circle 0 to 2
-						ctx.beginPath();
-						ctx.moveTo(40,60);
-						ctx.lineTo(40,127);
-						ctx.stroke();
+						if(adjMatrix[0][2] <= 4){
+							if(adjMatrix[0][2] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[0][2] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[0][2] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(40,60);
+							ctx.lineTo(40,127);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(30,110);
-						ctx.lineTo(40,127);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(30,110);
+							ctx.lineTo(40,127);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(50,110);
-						ctx.lineTo(40,127);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(50,110);
+							ctx.lineTo(40,127);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 40,60, 40,127); // cross edge
+							dashedLine("myGraph", 30,110, 40,127); 
+							dashedLine("myGraph", 50,110, 40,127); 
+
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
+
 					}
 
 					if(adjMatrix[2][0] == 1){ // circle 2 to 0
-						ctx.beginPath();
-						ctx.moveTo(55,122);
-						ctx.lineTo(55,66);
-						ctx.stroke();
+						if(adjMatrix[2][0] <= 4){
+							if(adjMatrix[2][0] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[2][0] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[2][0] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(55,122);
+							ctx.lineTo(55,66);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(50,76);
-						ctx.lineTo(55,66);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(50,76);
+							ctx.lineTo(55,66);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(60,76);
-						ctx.lineTo(55,66);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(60,76);
+							ctx.lineTo(55,66);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 55,122, 55,66); // cross edge
+							dashedLine("myGraph", 50,76, 55,66); 
+							dashedLine("myGraph", 60,76, 55,66); 
+
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[0][3] == 1){ // circle 0 to 3
-						ctx.beginPath();
-						ctx.moveTo(90,50);
-						ctx.lineTo(208,122);
-						ctx.stroke();
+						if(adjMatrix[0][3] <= 4){
+							if(adjMatrix[0][3] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[0][3] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[0][3] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(90,50);
+							ctx.lineTo(208,122);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(208,112);
-						ctx.lineTo(208,122);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(208,112);
+							ctx.lineTo(208,122);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(190,120);
-						ctx.lineTo(208,122);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(190,120);
+							ctx.lineTo(208,122);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 90,50, 208,122); // cross edge
+							dashedLine("myGraph", 208,112, 208,122); 
+							dashedLine("myGraph", 190,120, 208,122); 
+
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 
 					if(adjMatrix[3][0] == 1){ // circle 3 to 0
-						ctx.beginPath();
-						ctx.moveTo(198,132);
-						ctx.lineTo(80,60);
-						ctx.stroke();
+						if(adjMatrix[3][0] <= 4){
+							if(adjMatrix[3][0] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[3][0] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[3][0] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(198,132);
+							ctx.lineTo(80,60);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(90,55);
-						ctx.lineTo(80,60);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(90,55);
+							ctx.lineTo(80,60);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(95,76);
-						ctx.lineTo(80,60);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(95,76);
+							ctx.lineTo(80,60);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 198,132, 80,60); // cross edge
+							dashedLine("myGraph", 90,55, 80,60); 
+							dashedLine("myGraph", 95,76, 80,60); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[0][4] == 1){ // circle 0 to 4
-						ctx.beginPath();
-						ctx.moveTo(75,63);
-						ctx.lineTo(140,210);
-						ctx.stroke();
+						if(adjMatrix[0][4] <= 4){
+							if(adjMatrix[0][4] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[0][4] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[0][4] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(75,63);
+							ctx.lineTo(140,210);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(130,200);
-						ctx.lineTo(140,210);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(130,200);
+							ctx.lineTo(140,210);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(140,200);
-						ctx.lineTo(140,210);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(140,200);
+							ctx.lineTo(140,210);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 75,63, 140,210); // cross edge
+							dashedLine("myGraph", 130,200, 140,210); 
+							dashedLine("myGraph", 140,200, 140,210); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[4][0] == 1){ // circle 4 to 0
-						ctx.beginPath();
-						ctx.moveTo(130,210);
-						ctx.lineTo(70,68);
-						ctx.stroke();
+						if(adjMatrix[4][0] <= 4){
+							if(adjMatrix[4][0] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[4][0] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[4][0] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(130,210);
+							ctx.lineTo(70,68);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(65,80);
-						ctx.lineTo(70,68);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(65,80);
+							ctx.lineTo(70,68);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(79,74);
-						ctx.lineTo(70,68);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(79,74);
+							ctx.lineTo(70,68);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 130,210, 70,68); // cross edge
+							dashedLine("myGraph", 65,80, 70,68); 
+							dashedLine("myGraph", 79,74, 70,68); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[1][2] == 1){ // circle 1 to 2
-						ctx.beginPath();
-						ctx.moveTo(220,66);
-						ctx.lineTo(89,150);
-						ctx.stroke();
+						if(adjMatrix[1][2] <= 4){
+							if(adjMatrix[1][2] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[1][2] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[1][2] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(220,66);
+							ctx.lineTo(89,150);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(93,140);
-						ctx.lineTo(89,150);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(93,140);
+							ctx.lineTo(89,150);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(102,148);
-						ctx.lineTo(89,150);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(102,148);
+							ctx.lineTo(89,150);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 220,66, 89,150); // cross edge
+							dashedLine("myGraph", 93,140, 89,150); 
+							dashedLine("myGraph", 102,148, 89,150); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
+
 					}
 
 					if(adjMatrix[2][1] == 1){ // circle 2 to 1
-						ctx.beginPath();
-						ctx.moveTo(89,140);
-						ctx.lineTo(207,66);
-						ctx.stroke();
+						if(adjMatrix[2][1] <= 4){
+							if(adjMatrix[2][1] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[2][1] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[2][1] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(89,140);
+							ctx.lineTo(207,66);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(192,63);
-						ctx.lineTo(205,66);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(192,63);
+							ctx.lineTo(205,66);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(200,75);
-						ctx.lineTo(205,66);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(200,75);
+							ctx.lineTo(205,66);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 89,140, 207,66); // cross edge
+							dashedLine("myGraph", 192,63, 207,66); 
+							dashedLine("myGraph", 200,75, 207,66); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[1][3] == 1){ // circle 1 to 3
-						ctx.beginPath();
-						ctx.moveTo(240,60);
-						ctx.lineTo(240,130);
-						ctx.stroke();
+						if(adjMatrix[1][3] <= 4){
+							if(adjMatrix[1][3] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[1][3] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[1][3] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(240,60);
+							ctx.lineTo(240,130);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(235,120);
-						ctx.lineTo(240,130);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(235,120);
+							ctx.lineTo(240,130);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(245,120);
-						ctx.lineTo(240,130);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(245,120);
+							ctx.lineTo(240,130);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 240,60, 240,130); // cross edge
+							dashedLine("myGraph", 235,120, 240,130); 
+							dashedLine("myGraph", 245,120, 240,130); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[3][1] == 1){ // circle 3 to 1
-						ctx.beginPath();
-						ctx.moveTo(230,122);
-						ctx.lineTo(230,68);
-						ctx.stroke();
+						if(adjMatrix[3][1] <= 4){
+							if(adjMatrix[3][1] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[3][1] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[3][1] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(230,122);
+							ctx.lineTo(230,68);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(225,80);
-						ctx.lineTo(230,68);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(225,80);
+							ctx.lineTo(230,68);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(235,80);
-						ctx.lineTo(230,68);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(235,80);
+							ctx.lineTo(230,68);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 230,122, 230,68); // cross edge
+							dashedLine("myGraph", 225,80, 230,68); 
+							dashedLine("myGraph", 235,80, 230,68); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[1][4] == 1){ // circle 1 to 4
-						ctx.beginPath();
-						ctx.moveTo(195,51);
-						ctx.lineTo(158,215);
-						ctx.stroke();
+						if(adjMatrix[1][4] <= 4){
+							if(adjMatrix[1][4] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[1][4] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[1][4] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(195,51);
+							ctx.lineTo(158,215);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(155,200);
-						ctx.lineTo(158,215);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(155,200);
+							ctx.lineTo(158,215);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(165,210);
-						ctx.lineTo(158,215);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(165,210);
+							ctx.lineTo(158,215);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 195,51, 158,215); // cross edge
+							dashedLine("myGraph", 155,200, 158,215); 
+							dashedLine("myGraph", 165,210, 158,215); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[4][1] == 1){ // circle 4 to 1
-						ctx.beginPath();
-						ctx.moveTo(145,212);
-						ctx.lineTo(190,40);
-						ctx.stroke();
+						if(adjMatrix[4][1] <= 4){
+							if(adjMatrix[4][1] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[4][1] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[4][1] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(145,212);
+							ctx.lineTo(190,40);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(182,45);
-						ctx.lineTo(190,40);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(182,45);
+							ctx.lineTo(190,40);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(190,60);
-						ctx.lineTo(190,40);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(190,60);
+							ctx.lineTo(190,40);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 145,212, 190,40); // cross edge
+							dashedLine("myGraph", 182,45, 190,40); 
+							dashedLine("myGraph", 190,60, 190,40); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[2][3] == 1){ // circle 2 to 3
-						ctx.beginPath();
-						ctx.moveTo(82,170);
-						ctx.lineTo(200,170);
-						ctx.stroke();
+						if(adjMatrix[2][3] <= 4){
+							if(adjMatrix[2][3] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[2][3] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[2][3] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(82,170);
+							ctx.lineTo(200,170);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(190,165);
-						ctx.lineTo(200,170);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(190,165);
+							ctx.lineTo(200,170);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(190,175);
-						ctx.lineTo(200,170);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(190,175);
+							ctx.lineTo(200,170);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 82,170, 200,170); // cross edge
+							dashedLine("myGraph", 190,165, 200,170); 
+							dashedLine("myGraph", 190,175, 200,170); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[3][2] == 1){ // circle 3 to 2
-						ctx.beginPath();
-						ctx.moveTo(191,160);
-						ctx.lineTo(88,160);
-						ctx.stroke();
+						if(adjMatrix[3][2] <= 4){
+							if(adjMatrix[3][2] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[3][2] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[3][2] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(191,160);
+							ctx.lineTo(88,160);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(100,155);
-						ctx.lineTo(90,160);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(100,155);
+							ctx.lineTo(90,160);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(100,165);
-						ctx.lineTo(90,160);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(100,165);
+							ctx.lineTo(90,160);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 191,160, 88,160); // cross edge
+							dashedLine("myGraph", 100,155, 88,160); 
+							dashedLine("myGraph", 100,165, 88,160); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[2][4] == 1){ // circle 2 to 4
-						ctx.beginPath();
-						ctx.moveTo(76,173);
-						ctx.lineTo(120,220);
-						ctx.stroke();
+						if(adjMatrix[2][4] <= 4){
+							if(adjMatrix[2][4] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[2][4] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[2][4] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(76,173);
+							ctx.lineTo(120,220);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(93,210);
-						ctx.lineTo(120,220);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(93,210);
+							ctx.lineTo(120,220);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(115,203);
-						ctx.lineTo(120,220);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(115,203);
+							ctx.lineTo(120,220);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 76,173, 120,220); // cross edge
+							dashedLine("myGraph", 93,210, 120,220); 
+							dashedLine("myGraph", 115,203, 120,220); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[4][2] == 1){ // circle 4 to 2
-						ctx.beginPath();
-						ctx.moveTo(110,240);
-						ctx.lineTo(60,180);
-						ctx.stroke();
+						if(adjMatrix[4][2] <= 4){
+							if(adjMatrix[4][2] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[4][2] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[4][2] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(110,240);
+							ctx.lineTo(60,180);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(56,187);
-						ctx.lineTo(60,180);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(56,187);
+							ctx.lineTo(60,180);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(73,185);
-						ctx.lineTo(60,180);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(73,185);
+							ctx.lineTo(60,180);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 110,240, 60,180); // cross edge
+							dashedLine("myGraph", 56,187, 60,180); 
+							dashedLine("myGraph", 73,185, 60,180); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[3][4] == 1){ // circle 3 to 4
-						ctx.beginPath();
-						ctx.moveTo(220,180);
-						ctx.lineTo(170,240);
-						ctx.stroke();
+						if(adjMatrix[3][4] <= 4){
+							if(adjMatrix[3][4] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[3][4] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[3][4] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(220,180);
+							ctx.lineTo(170,240);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(172,232);
-						ctx.lineTo(170,240);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(172,232);
+							ctx.lineTo(170,240);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(177,238);
-						ctx.lineTo(170,240);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(177,238);
+							ctx.lineTo(170,240);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 220,180, 170,240); // cross edge
+							dashedLine("myGraph", 172,232, 170,240); 
+							dashedLine("myGraph", 177,238, 170,240); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 					if(adjMatrix[4][3] == 1){ // circle 4 to 3
-						ctx.beginPath();
-						ctx.moveTo(164,221);
-						ctx.lineTo(205,175);
-						ctx.stroke();
+						if(adjMatrix[4][3] <= 4){
+							if(adjMatrix[4][3] == 2){ // tree edge
+								ctx.lineWidth = 3;
+							}else if(adjMatrix[4][3] == 3){ // forward edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#339900";
+							}else if(adjMatrix[4][3] == 4){  // back edge
+								ctx.lineWidth = 3;
+								ctx.strokeStyle = "#0000FF";
+							}else{
+							
+							}
+							ctx.beginPath();
+							ctx.moveTo(164,221);
+							ctx.lineTo(205,175);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(181,183);
-						ctx.lineTo(205,175);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(181,183);
+							ctx.lineTo(205,175);
+							ctx.stroke();
 
-						ctx.beginPath();
-						ctx.moveTo(204,194);
-						ctx.lineTo(205,175);
-						ctx.stroke();
+							ctx.beginPath();
+							ctx.moveTo(204,194);
+							ctx.lineTo(205,175);
+							ctx.stroke();
+						}else{
+							dashedLine("myGraph", 164,221, 205,175); // cross edge
+							dashedLine("myGraph", 181,183, 205,175); 
+							dashedLine("myGraph", 204,194, 205,175); 
+						}			
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
 				}else{
@@ -1319,6 +1720,54 @@
 				//process();
 				allStepString = "";
 			}// end function clearAll()
+
+			if (window.CanvasRenderingContext2D && CanvasRenderingContext2D.prototype.lineTo) {
+    			CanvasRenderingContext2D.prototype.dashedLine = function (x, y, x2, y2, dashArray) {
+        		if (!dashArray) dashArray = [5, 5];
+        			var dashCount = dashArray.length;
+       				this.moveTo(x, y);
+        			var dx = (x2 - x), dy = (y2 - y);
+       				var slope = dy / dx;
+        			var distRemaining = Math.sqrt(dx * dx + dy * dy);
+        			var dashIndex = 0, draw = true;
+        			while (distRemaining >= 0.1 && dashIndex < 10000) {
+            			var dashLength = dashArray[dashIndex++ % dashCount];
+            				if (dashLength == 0) dashLength = 0.001; // Hack for Safari
+            					if (dashLength > distRemaining) dashLength = distRemaining;
+            						var xStep = Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+            					x += xStep
+            					y += slope * xStep;
+            					this[draw ? 'lineTo' : 'moveTo'](x, y);
+            					distRemaining -= dashLength;
+            					draw = !draw;
+        			}
+        			// Ensure that the last segment is closed for proper stroking
+        			this.moveTo(0, 0);
+   				}
+			}
+
+			//canvas 畫布的id
+			//defaultX defaultY 起始座標點
+			//x，y終點座標點
+			function dashedLine(canvas, defaultX, defaultY, x, y) {
+    			var c = document.getElementById(canvas);
+    			var cxt = c.getContext("2d");
+   		 		cxt.strokeStyle = 'black';
+    			var dashes = "5 5";
+    			var drawDashes = function () {
+        		var dashGapArray = dashes.replace(/^\s+|\s+$/g, '').split(/\s+/);
+        		if (!dashGapArray[0] || (dashGapArray.length == 1 && dashGapArray[0] == 0)) return;
+        			cxt.lineWidth = "1";
+        			cxt.lineCap = "round";
+        			cxt.beginPath();
+        			cxt.strokeStyle = 'red';
+        			//開始畫虛線
+        			cxt.dashedLine(defaultX, defaultY, x, y, dashGapArray);
+        			cxt.closePath();
+        			cxt.stroke();
+    			};
+    			drawDashes();
+			}
 
 		</script>
 	</body>
