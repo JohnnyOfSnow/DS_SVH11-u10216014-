@@ -67,6 +67,8 @@
 					<td><input type=text value="" id=0circledu size="15" ></td>
 					<td><input type=text value="" id=0circlefu size="15" ></td>
 					<td><input type=text value="" id=0circlepiu size="15" ></td>
+					<td></td>
+					<td>top</td>
 				</tr>
 				<tr>
 					<td align="center"><p>2</p></td>
@@ -672,7 +674,7 @@
 
 
 
-				
+				/**
 				if(graph == 0){ // undirected graph
 					if(adjMatrix[0][1] == 1){ // circle 0 to 1
 						ctx.beginPath();
@@ -744,7 +746,7 @@
 						ctx.lineTo(158,215);
 						ctx.stroke();
 					}	
-				}else if(graph == 1){
+				}else if(graph == 1){*/
 					if(adjMatrix[0][1] >= 1){ // circle 0 to 1
 
 						if(adjMatrix[0][1] == 2){ // tree edge (black line)
@@ -1468,10 +1470,10 @@
 						ctx.lineWidth = 1;
 						ctx.strokeStyle = "#000000";
 					}
-
+				/*	
 				}else{
 
-				}
+				}*/
 
 			}// end function drawGraph()
 
