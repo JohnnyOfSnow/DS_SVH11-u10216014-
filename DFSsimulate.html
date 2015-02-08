@@ -219,7 +219,7 @@
 
 			var circleDiscover = new Array(0,0,0,0,0); // record the circle wether is discovered.
 			var circledu = new Array(-1,-1,-1,-1,-1); // record the circle d[u].
-			var circlefu = new Array(3,4,5,6,7); // record the circle f[u].
+			var circlefu = new Array(-1,-1,-1,-1,-1); // record the circle f[u].
 			var circlepiu = new Array(-1,-1,-1,-1,-1); // record the circle pi[u].
 
 			var du = 0;
@@ -406,6 +406,7 @@
 				if(isAnswer == 0){
 					clearGraph();
 					DFSstep = 0;
+					time = 0;
 					for(var k = 0; k < circleDiscover.length; k++){
 						circleDiscover[k] = 0;
 						circledu[k] = -1;
@@ -2017,8 +2018,181 @@
 				}
 			}
 
-			
+			function giveQuestion(){
+				if(isAnswer == 0 && mode == 1){
+					stackString = "";
+					randomGenerateAdjMatrix();
+					if(mode == 1){ //  test mode
+						if(graph == 0 || graph == 1){ // undirected graph
+							if(isDecideAdjMatrix == 1){
+								while(DFSstep != 6){
+									if(DFSstep == 0){
+										DFSstep = 1;
+									}else if(DFSstep == 1){
 
+										for(var e = 0; e < circleDiscover.length; e++){
+											if(circleDiscover[e] == 0){
+												u = e;	
+												stackString = stackString + u; // The stack must empty.			
+												DFSstep = 3;
+												
+												break;
+											}
+										}
+
+										if(DFSstep == 3){
+
+										}else{
+											DFSstep = 2;
+										}							
+										
+									}else if(DFSstep == 2){
+										DFSstep = 6;
+									}else if(DFSstep == 3){
+										circleDiscover[u] = 1;
+										find = -1;
+										time = time + 1;
+										
+										circleDiscover[u] = 1;
+										circledu[u] = time;
+	
+										DFSstep = 5;
+										
+										
+
+									}else if(DFSstep == 4){
+										stackStringHandle = (document.getElementById("stack").value).split(",");
+										if(stackStringHandle[0] == "0"){
+											u = stackStringHandle[0];
+										}else if(stackStringHandle[0] == "1"){
+											u = stackStringHandle[0];
+										}else if(stackStringHandle[0] == "2"){
+											u = stackStringHandle[0];
+										}else if(stackStringHandle[0] == "3"){
+											u = stackStringHandle[0];
+										}else if(stackStringHandle[0] == "4"){
+											u = stackStringHandle[0];
+										}else{
+											DFSstep = 1;
+										}
+
+										if(DFSstep == 4){
+											time = time + 1;
+											circleDiscover[u] = 2;
+											circlefu[stackStringHandle[0]] = time;
+
+											connectStackString();
+											document.getElementById("stack").value = stackString;
+											stackStringHandle = (document.getElementById("stack").value).split(",");
+											if(stackStringHandle[0] == "0" || stackStringHandle[0] == "1" || stackStringHandle[0] == "2" || stackStringHandle[0] == "3" || stackStringHandle[0] == "4"){
+												u = stackStringHandle[0];
+												DFSstep = 5;
+											}else{
+												DFSstep = 1;
+											}
+											
+										}else{
+											
+											DFSstep = 1;
+										}
+
+									}else if(DFSstep == 5){
+										
+										for(var e = 0; e < circleDiscover.length; e++){
+											if(adjMatrix[u][e] == 1){
+												if(circleDiscover[e] == 0){
+													edgeCheck(u,e);
+													find = 1;
+													circlepiu[e] = u;
+													stackString = e + "," + stackString;
+													document.getElementById("stack").value = stackString;
+													u = e;
+													DFSstep = 3; // rewrite the recursive patrion from algorithm.
+													break;
+												}
+												edgeCheck(u,e);
+											}
+										}
+
+										if(find == 1){
+
+										}else{
+											DFSstep = 4;// ready to pop an element from stack
+										}
+										
+										
+									}else{
+
+									} // end DFS step
+								}// end while
+							}
+						}
+					}
+				}
+			}// end function giveQuestion()
+
+			function checkAnswer(){
+				if(isAnswer == 0 && mode == 1 && graph != -1){
+					isAnswer = 1;
+					document.getElementById("relationship").style.backgroundColor = "#fff";
+					document.getElementById("currentStepDFS").innerHTML = "";
+					document.getElementById("currentStepDFS").style.backgroundColor = "#fff";
+					document.getElementById("allStepDFS").style.backgroundColor = "#ff6";
+					document.getElementById("allState").style.backgroundColor = "#ff6";
+
+					var duCorrect = 0;
+					for(var i = 0; i < circledu.length; i++){
+						var idString = i + "circledu";
+						var userAnswer = eval(document.getElementById(idString).value);
+						if(userAnswer != circledu[i]){
+							document.getElementById(idString).style.backgroundColor = "#ff6";
+							document.getElementById(idString).value = userAnswer + "  /  " + circledu[i];
+						}else{
+							document.getElementById(idString).style.backgroundColor = "#6f3";
+							duCorrect = duCorrect + 1;
+						}
+					}
+
+					var piuCorrect = 0
+					for(var j = 0; j < circlepiu.length; j++){
+						var idString = j + "circlepiu";
+						var userAnswer = eval(document.getElementById(idString).value);
+						if(userAnswer != circlepiu[j]){
+							document.getElementById(idString).style.backgroundColor = "#ff6";
+							document.getElementById(idString).value = userAnswer + "  /  " + circlepiu[j];
+						}else{
+							document.getElementById(idString).style.backgroundColor = "#6f3";
+							piuCorrect = piuCorrect + 1;
+						}
+					}
+
+					var fuCorrect = 0
+					for(var j = 0; j < circlefu.length; j++){
+						var idString = j + "circlefu";
+						var userAnswer = eval(document.getElementById(idString).value);
+						if(userAnswer != circlefu[j]){
+							document.getElementById(idString).style.backgroundColor = "#ff6";
+							document.getElementById(idString).value = userAnswer + "  /  " + circlefu[j];
+						}else{
+							document.getElementById(idString).style.backgroundColor = "#6f3";
+							fuCorrect = fuCorrect + 1;
+						}
+					}
+
+					var score = (duCorrect + piuCorrect + fuCorrect) * 10;
+
+					if(score == 150){
+						document.getElementById("allStepDFS").innerHTML = "你對於DFS十分熟析";
+					}else if(score >= 90){
+						document.getElementById("allStepDFS").innerHTML = "你可能不小心看錯，下次要仔細\n\n格子內的答案以 U / A 顯示，其中U代表你答的答案，A表示正確答案";
+					}else{
+						document.getElementById("allStepDFS").innerHTML = "你要回去再把DFS從頭到尾再看一次，並且自己出練習題練習。\n\n格子內的答案以 U / A 顯示，其中U代表你答的答案，A表示正確答案";
+					}
+				}
+				drawGraph();
+				document.getElementById("instruction").innerHTML = "<tree>黑色粗體線表示Tree edge</tree>,<back>藍色線表示Back edge</back>,<forward>綠色線表示Forward edge</forward>,<cross>橘色線表示Cross edge</cross>";
+				
+			}
 		</script>
 	</body>
 </html>
