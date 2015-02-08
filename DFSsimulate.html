@@ -2023,7 +2023,7 @@
 					stackString = "";
 					randomGenerateAdjMatrix();
 					if(mode == 1){ //  test mode
-						if(graph == 0 || graph == 1){ // undirected graph
+						if(graph == 0 || graph == 1){ // already choose graph
 							if(isDecideAdjMatrix == 1){
 								while(DFSstep != 6){
 									if(DFSstep == 0){
@@ -2051,7 +2051,7 @@
 										circleDiscover[u] = 1;
 										find = -1;
 										time = time + 1;
-										var recordString = string4 + u + " \n用紅色圈圈圈起來，並且d[u]設為" + time + "\n";
+										
 										circleDiscover[u] = 1;
 										circledu[u] = time;
 										
@@ -2119,16 +2119,15 @@
 											
 											DFSstep = 4;// ready to pop an element from stack
 										}
-										
-										
+											
 									}else{
 
-									}
+									}// end DFS step
 								}// end while
-							}
-						}
-					}
-				}
+							}// end if adjMatrix decide
+						}// end if graph choose
+					}// end if test mode
+				}// end if is answered
 			}// end function giveQuestion()
 
 			function checkAnswer(){
@@ -2188,11 +2187,10 @@
 					}else{
 						document.getElementById("allStepDFS").innerHTML = "你要回去再把DFS從頭到尾再看一次，並且自己出練習題練習。\n\n格子內的答案以 U / A 顯示，其中U代表你答的答案，A表示正確答案";
 					}
-				}
+				}// end if test mode, is answered, graph choose
 				drawGraph();
-				document.getElementById("instruction").innerHTML = "<tree>黑色粗體線表示Tree edge</tree>,<back>藍色線表示Back edge</back>,<forward>綠色線表示Forward edge</forward>,<cross>橘色線表示Cross edge</cross>";
-				
-			}
+				document.getElementById("instruction").innerHTML = "<tree>黑色粗體線表示Tree edge</tree>,<back>藍色線表示Back edge</back>,<forward>綠色線表示Forward edge</forward>,<cross>橘色線表示Cross edge</cross>";	
+			}// end function checkAnswer()
 		</script>
 	</body>
 </html>
