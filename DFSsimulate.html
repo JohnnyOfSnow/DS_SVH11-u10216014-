@@ -6,6 +6,25 @@
 			canvas{
 				border: solid 1px green;
 			}
+
+			back{
+				color: #0000FF;
+				font-weight: 900;
+			}
+
+			forward{
+				color: #339900;
+				font-weight: 900;
+			}
+
+			cross{
+				color: #FF6600;
+				font-weight: 900;
+			}
+
+			tree{
+				font-weight: 900;
+			}
 		</style>
 	</head>
 	
@@ -168,6 +187,12 @@
 						</table>	
 					</td>
 				</tr>
+				
+			</table>
+			<table>
+				<tr>
+					<td><p id = "instruction"><tree>黑色粗體線表示Tree edge</tree>,<back>藍色線表示Back edge</back>,<forward>綠色線表示Forward edge</forward>,<cross>橘色線表示Cross edge</cross></p></td>
+				</tr>
 			</table>
 			
 		</form>
@@ -237,7 +262,7 @@
 						break;
 					}
 				}
-				//process();
+				process();
 			}// end function modeChoice()
 			
 			function graphChoice(){
@@ -252,7 +277,7 @@
 						
 					}
 				}
-				//process();
+				process();
 			}// end function graphChoice()
 			
 			function modeClear(){
@@ -263,7 +288,7 @@
 				}
 				result.innerHTML = "";
 				mode = -1;
-				//process();
+				process();
 				
 			}// end function modeClear()
 			
@@ -275,7 +300,7 @@
 				}
 				result.innerHTML = "";
 				graph = -1;
-				//process();
+				process();
 			}// end function graphClear()
 
 			function decideAdjMatrix(){
@@ -370,7 +395,7 @@
 						}else{
 
 						}
-						//process();
+						process();
 					}else{
 
 					}
@@ -448,7 +473,7 @@
 					}else{
 
 					}
-					//process();
+					process();
 				}
 			}// end function randomGenerateAdjMatrix()
 
@@ -477,7 +502,7 @@
 				
 				isDecideAdjMatrix = 0;
 				clearGraph();
-				//process();
+				process();
 			}// end function clearAdjMatrix()
 
 			function drawGraph(){
@@ -674,79 +699,195 @@
 
 
 
-				/**
+				
 				if(graph == 0){ // undirected graph
-					if(adjMatrix[0][1] == 1){ // circle 0 to 1
+					if(adjMatrix[0][1] >= 1){ // circle 0 to 1
+						if(adjMatrix[0][1] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[0][1] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(90,40);
 						ctx.lineTo(190,40);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[0][2] == 1){ // circle 0 to 2
+					if(adjMatrix[0][2] >= 1){ // circle 0 to 2
+						if(adjMatrix[0][2] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[0][2] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(60,70);
 						ctx.lineTo(60,120);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[0][3] == 1){ // circle 0 to 3
+					if(adjMatrix[0][3] >= 1){ // circle 0 to 3
+						if(adjMatrix[0][3] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[0][3] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
 						ctx.beginPath();
 						ctx.moveTo(80,60);
 						ctx.lineTo(198,132);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[0][4] == 1){ // circle 0 to 4
+					if(adjMatrix[0][4] >= 1){ // circle 0 to 4
+						if(adjMatrix[0][4] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[0][4] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(80,60);
 						ctx.lineTo(140,210);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
+					if(adjMatrix[1][2] >= 1){ // circle 1 to 2
+						if(adjMatrix[1][2] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[1][2] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
 
+						}
 
-					if(adjMatrix[1][2] == 1){ // circle 1 to 2
 						ctx.beginPath();
 						ctx.moveTo(205,63);
 						ctx.lineTo(87,135);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[1][3] == 1){ // circle 1 to 3
+					if(adjMatrix[1][3] >= 1){ // circle 1 to 3
+						if(adjMatrix[1][3] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[1][3] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(220,70);
 						ctx.lineTo(220,120);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[1][4] == 1){ // circle 1 to 4
+					if(adjMatrix[1][4] >= 1){ // circle 1 to 4
+						if(adjMatrix[1][4] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[1][4] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(205,63);
 						ctx.lineTo(140,210);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[2][3] == 1){ // circle 2 to 3
+					if(adjMatrix[2][3] >= 1){ // circle 2 to 3
+						if(adjMatrix[2][3] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[2][3] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(90,150);
 						ctx.lineTo(190,150);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[2][4] == 1){ // circle 2 to 4
+					if(adjMatrix[2][4] >= 1){ // circle 2 to 4
+						if(adjMatrix[2][4] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[2][4] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
+
 						ctx.beginPath();
 						ctx.moveTo(80,170);
 						ctx.lineTo(140,210);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}
 
-					if(adjMatrix[3][4] == 1){ // circle 3 to 4
+					if(adjMatrix[3][4] >= 1){ // circle 3 to 4
+						if(adjMatrix[3][4] == 2){ // tree edge (black line)
+							ctx.lineWidth = 3;
+						}else if(adjMatrix[3][4] == 4){  // back edge (blue line)
+							ctx.lineWidth = 3;
+							ctx.strokeStyle = "#0000FF";
+						}else{
+
+						}
 						ctx.beginPath();
 						ctx.moveTo(205,175);
 						ctx.lineTo(158,215);
 						ctx.stroke();
+
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = "#000000";
 					}	
-				}else if(graph == 1){*/
+				}else if(graph == 1){
 					if(adjMatrix[0][1] >= 1){ // circle 0 to 1
 
 						if(adjMatrix[0][1] == 2){ // tree edge (black line)
@@ -1470,18 +1611,22 @@
 						ctx.lineWidth = 1;
 						ctx.strokeStyle = "#000000";
 					}
-				/*	
+				
 				}else{
 
-				}*/
+				}
 
 			}// end function drawGraph()
 
 			function next(){
+				document.getElementById("instruction").innerHTML = "<tree>黑色粗體線表示Tree edge</tree>,<back>藍色線表示Back edge</back>,<forward>綠色線表示Forward edge</forward>,<cross>橘色線表示Cross edge</cross>";
+				document.getElementById("inputComplete").disabled = true;
+				document.getElementById("randomInput").disabled = true;
+				document.getElementById("clearInput").disabled = true;
 				clearGraph();
 				if(mode == 0){ // simulate and test
 					if(graph == 0 || graph == 1){ // undirected graph
-						if(isDecideAdjMatrix == 1 && DFSstep != 8){
+						if(isDecideAdjMatrix == 1 && DFSstep != 7){
 							if(DFSstep == 0){
 								document.getElementById("0circledu").value = "-1";
 								document.getElementById("0circlepiu").value = "-1";
@@ -1499,14 +1644,17 @@
 								document.getElementById("4circlepiu").value = "-1";
 								document.getElementById("4circlefu").value = "-1";
 								
-								allStepString = allStepString + "現在開始進行 " + document.getElementById("DFSForm").graph1[graph].value + " 的DFS(深度優先搜尋)\n\n";
+								allStepString = allStepString + "現在開始進行 " + document.getElementById("DFSForm").graph1[graph].value + " 的DFS(深度優先搜尋)\n";
 								document.getElementById("currentStepDFS").innerHTML = allStepString + string0;
-								allStepString = document.getElementById("currentStepDFS").value;
-								document.getElementById("allStepDFS").innerHTML = allStepString;
+
+								document.getElementById("allStepDFS").innerHTML = allStepString + string0;
+								allStepString = document.getElementById("allStepDFS").value;
+								
 								drawGraph();
 								DFSstep = 1;
 							}else if(DFSstep == 1){
 								document.getElementById("currentStepDFS").innerHTML = string3;
+
 								for(var e = 0; e < circleDiscover.length; e++){
 									if(circleDiscover[e] == 0){
 										u = e;	
@@ -1517,15 +1665,24 @@
 									}
 								}
 
+								allStepString = allStepString + "\n---------------\n" + document.getElementById("currentStepDFS").value;
+								document.getElementById("allStepDFS").innerHTML = allStepString;
+
 								if(DFSstep == 3){
 
 								}else{
 									DFSstep = 2;
 								}
+
+								
+								
+
 								drawGraph();
 							}else if(DFSstep == 2){
 								document.getElementById("currentStepDFS").innerHTML = "現在圖已經搜尋完畢，結束DFS";
 								drawGraph();
+								allStepString = allStepString + "\n---------------\n" + document.getElementById("currentStepDFS").value;
+								document.getElementById("allStepDFS").innerHTML = allStepString;
 								DFSstep = 6;
 							}else if(DFSstep == 3){
 								circleDiscover[u] = 1;
@@ -1542,6 +1699,11 @@
 								DFSstep = 5;
 								drawGraph();
 								document.getElementById("currentStepDFS").innerHTML = recordString;
+
+								allStepString = allStepString + "\n---------------\n" + document.getElementById("currentStepDFS").value;
+								document.getElementById("allStepDFS").innerHTML = allStepString;
+
+								
 
 							}else if(DFSstep == 4){
 								var recordString = "";
@@ -1583,6 +1745,9 @@
 									DFSstep = 1;
 								}
 								document.getElementById("currentStepDFS").innerHTML = recordString;
+								allStepString = allStepString + "\n---------------\n" + document.getElementById("currentStepDFS").value + "\n";
+								document.getElementById("allStepDFS").innerHTML = allStepString;
+								
 								drawGraph();
 
 							}else if(DFSstep == 5){
@@ -1615,6 +1780,9 @@
 								}
 								drawGraph();
 								document.getElementById("currentStepDFS").innerHTML = recordString;
+								allStepString = allStepString + "\n---------------\n" + document.getElementById("currentStepDFS").value;
+								document.getElementById("allStepDFS").innerHTML = allStepString;
+								
 							}else{
 								drawGraph();
 
@@ -1629,7 +1797,7 @@
 				stackString = "";
 				for(var i = 1; i < stackStringHandle.length; i++){
 					if(stackStringHandle[i] == "0" || stackStringHandle[i] == "1" || stackStringHandle[i] == "2" || stackStringHandle[i] == "3" || stackStringHandle[i] == "4"){
-						if(i == (stackStringHandle.length - 1)){
+						if(i == (stackStringHandle.length - 1)){ // the last element don't add the ","
 							stackString = stackString + stackStringHandle[i];
 						}else{
 							stackString = stackString + stackStringHandle[i] + ",";
@@ -1641,33 +1809,60 @@
 			}// end function connectStackString()
 
 			function edgeCheck(u,v){
-				if(adjMatrix[u][v] == 1){ // 確認線是否畫過
-					if(circleDiscover[u] == 1){
-						if(circleDiscover[v] == 0){ // tree edge
-							adjMatrix[u][v] = 2;
-						}
+				if(graph == 1){ // directed graph have four edges(tree,back,forward,and cross edge)
+					if(adjMatrix[u][v] == 1){ // 確認線是否畫過
+						if(circleDiscover[u] == 1){
+							if(circleDiscover[v] == 0){ // tree edge
+								adjMatrix[u][v] = 2;
+							}
 
-						if(circleDiscover[v] == 1){ // back edge
-							adjMatrix[u][v] = 4;
-						}
+							if(circleDiscover[v] == 1){ // back edge
+								adjMatrix[u][v] = 4;
+							}
 
-						if(circleDiscover[v] == 2){ // forward or cross
-							if(circledu[u] < circledu[v]){
-								adjMatrix[u][v] = 3; // forward edge
-							}else{
-								adjMatrix[u][v] = 5; // cross edge
+							if(circleDiscover[v] == 2){ // forward or cross
+								if(circledu[u] < circledu[v]){
+									adjMatrix[u][v] = 3; // forward edge
+								}else{
+									adjMatrix[u][v] = 5; // cross edge
+								}
 							}
 						}
-					}
-				}	
-			}
+					}	
+				}else{ // undirected graph have two edges(tree and back edge)
+					if(adjMatrix[u][v] == 1 && adjMatrix[v][u] == 1){ // 確認線是否畫過
+						if(circleDiscover[u] == 1){
+							if(circleDiscover[v] == 0){ // tree edge
+								adjMatrix[u][v] = 2;
+								if(u > v){
+									var temp = u;
+									u = v;
+									v = temp;
+								}
+								adjMatrix[u][v] = 2;
+							}else if(circleDiscover[v] == 1){ // back edge
+
+								adjMatrix[u][v] = 4;
+								if(u > v){
+									var temp = u;
+									u = v;
+									v = temp;
+								}
+								adjMatrix[u][v] = 4;
+							}else{
+
+							}// end if(edge)
+						}// end if(is circle discover)
+					}// end if(Have the line drawn in the graph?)
+				}// end if(undirected graph or directed graph)	
+			}// end function edgeCheck(u,v)
 
 			function doAll(){
 				if(mode == 0){ // simulate
 					if(graph == 0 || graph == 1){ // graph
 						if(isDecideAdjMatrix == 1){ // is decide the adj matrix
-							while(DFSstep != 6){ // the loop will stop when the DFSstep equal to SIX.
-								next();
+							while(DFSstep != 6){ // the loop will stop when the DFSstep equal to six.
+								next(); // Repeatly call the function.
 							}
 						}
 					}
@@ -1675,9 +1870,9 @@
 			}// end function doAll()
 
 			function clearGraph(){
-				var canvas = document.getElementById("myGraph");
-				var ctx = canvas.getContext("2d");
-				ctx.clearRect(0,0,canvas.width,canvas.height);
+				var canvas = document.getElementById("myGraph"); // Get the canvas by its id.
+				var ctx = canvas.getContext("2d"); // set the canvas in the environment 2D.
+				ctx.clearRect(0,0,canvas.width,canvas.height); // By drawing a white rectangle, we can clear the graph on canvas. 
 			}// end function clearGraph()
 
 			function clearAll(){
@@ -1717,9 +1912,110 @@
 				stackString = "";
 				isDecideAdjMatrix = 0;
 				isAnswer = 0;
-				//process();
+				process();
 				allStepString = "";
 			}// end function clearAll()
+
+			function init(){
+				document.getElementById("instruction").innerHTML = "";
+				document.getElementById("nowState").innerHTML = "提示使用者操作窗";
+				document.getElementById("allState").innerHTML = "";
+				document.getElementById("currentStepDFS").innerHTML = "這是一個關於DFS(深度優先搜尋)的程式\n一開始，請選擇模式(模擬或是測驗)";
+				document.getElementById("currentStepDFS").style.backgroundColor = "#ff6";
+				document.getElementById("chooseMode").style.backgroundColor = "#fff";
+				document.getElementById("chooseGraph").style.backgroundColor = "#fff";
+				document.getElementById("setAdj").style.backgroundColor = "#fff";
+				document.getElementById("testUse").style.backgroundColor = "#fff";
+				document.getElementById("simulateUse").style.backgroundColor = "#fff";
+				document.getElementById("relationship").style.backgroundColor = "#fff";
+				document.getElementById("allStepDFS").style.backgroundColor = "#fff";
+				document.getElementById("allStepDFS").innerHTML = "";
+				document.getElementById("inputComplete").disabled=true;
+				document.getElementById("randomInput").disabled=true;
+				document.getElementById("clearInput").disabled=true;
+				document.getElementById("simNext").disabled=true;
+				document.getElementById("simAll").disabled=true;
+				document.getElementById("simClear").disabled=true;
+				document.getElementById("testStart").disabled=true;
+				document.getElementById("testCheck").disabled=true;
+				document.getElementById("testClear").disabled=true;		
+
+				for(var i = 0; i < circledu.length; i++){
+					var duIdString = i + "circledu";
+					var piuIdString = i + "circlepiu";
+					var fuIdString = i + "circlefu";
+					document.getElementById(duIdString).style.backgroundColor = "#fff";
+					document.getElementById(piuIdString).style.backgroundColor = "#fff";
+					document.getElementById(fuIdString).style.backgroundColor = "#fff";
+					
+				}// end for loop
+			}
+
+			function process(){
+				init();
+				if(mode == 0){
+					document.getElementById("nowState").innerHTML = "4.現在步驟：";
+					document.getElementById("allState").innerHTML = "6.所有步驟：";
+					if(graph == 0 || graph == 1){
+						if(isDecideAdjMatrix == 1){
+							document.getElementById("inputComplete").disabled = false;
+							document.getElementById("randomInput").disabled = false;
+							document.getElementById("clearInput").disabled = false;
+							document.getElementById("simNext").disabled = false;
+							document.getElementById("simAll").disabled = false;
+							document.getElementById("simClear").disabled = false;
+							document.getElementById("setAdj").style.backgroundColor = "#fff";
+							document.getElementById("simulateUse").style.backgroundColor = "#ff6";
+							document.getElementById("currentStepDFS").innerHTML = "你已經設定好鄰接矩陣了，並且在綠框中看到你的鄰接矩陣畫成圖的樣子\n現在，你可以將游標移到模擬模式用按鈕，進行下一步、一次做完的按鈕操作\n\n若你對圖形不滿意可以再自行輸入資料後按下輸入完成鈕，或是按下隨機產生鈕，產生一個鄰接矩陣。";
+
+						}else{
+							document.getElementById("inputComplete").disabled = false;
+							document.getElementById("randomInput").disabled = false;
+							document.getElementById("clearInput").disabled = false;
+							document.getElementById("chooseGraph").style.backgroundColor = "#fff";
+							document.getElementById("currentStepDFS").innerHTML = "請請移動游標到3.輸入鄰接矩陣資料\n--->你可以自行輸入資料後按下輸入完成鈕\n--->或是按下隨機產生鈕，產生一個鄰接矩陣。";
+							document.getElementById("setAdj").style.backgroundColor = "#ff6";
+						}
+					}else{
+						document.getElementById("chooseMode").style.backgroundColor = "#fff";
+						document.getElementById("chooseGraph").style.backgroundColor = "#ff6";
+						document.getElementById("currentStepDFS").innerHTML = "請選擇圖形模式(undirected graph 無向圖  或是  directed graph  有向圖)";
+					}
+				}else if(mode == 1){
+					document.getElementById("nowState").innerHTML = "4.測驗模式指示框";
+					document.getElementById("allState").innerHTML = "6.測驗模式結果框";
+					if(graph == 0 || graph == 1){
+						if(isDecideAdjMatrix == 1){
+							document.getElementById("testStart").disabled = false;
+							document.getElementById("testCheck").disabled = false;
+							document.getElementById("testClear").disabled = false;
+							document.getElementById("currentStepDFS").innerHTML = "題目已經出好，請在5.各圓的關係，依照所給定的鄰接矩陣以及圖，完成各頂點的d[u],f[u]以及pi[u]\n注意：若pi[u]為NIL請輸入-1\n輸入完畢後，請按下確認答案鈕。\n統一從頂點0開始進行，若發現頂點時有多數，依數字由小到大進行";
+							document.getElementById("testUse").style.backgroundColor = "#fff";
+							document.getElementById("relationship").style.backgroundColor = "#ff6";
+							
+						}else{
+							document.getElementById("testStart").disabled = false;
+							document.getElementById("testCheck").disabled = false;
+							document.getElementById("testClear").disabled = false;
+							document.getElementById("chooseGraph").style.backgroundColor = "#fff";
+							document.getElementById("currentStepDFS").innerHTML = "請移動游標到測驗模式用按鈕，按下開始出題";
+							document.getElementById("testUse").style.backgroundColor = "#ff6";
+						}
+						
+					}else{
+						document.getElementById("chooseMode").style.backgroundColor = "#fff";
+						document.getElementById("chooseGraph").style.backgroundColor = "#ff6";
+						document.getElementById("currentStepDFS").innerHTML = "請選擇圖形模式(undirected graph 無向圖  或是  directed graph  有向圖)";
+					}
+				}else{
+					document.getElementById("nowState").innerHTML = "提示使用者操作窗";
+					document.getElementById("allState").innerHTML = "";
+					document.getElementById("currentStepDFS").innerHTML = "這是一個關於DFS(深度優先搜尋)的程式\n一開始，請選擇模式(模擬或是測驗)";
+					document.getElementById("currentStepDFS").style.backgroundColor = "#ff6";
+					document.getElementById("chooseMode").style.backgroundColor = "#ff6";
+					document.getElementById("allState").style.backgroundColor = "#fff";
+				}
+			}
 
 			
 
