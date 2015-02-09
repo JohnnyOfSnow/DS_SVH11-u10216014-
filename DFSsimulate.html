@@ -283,6 +283,8 @@
 			function modeClear(){
 				var form = document.getElementById("DFSForm");
 				var result = document.getElementById("mode");
+				clearAdjMatrix();
+
 				for (var i = 0; i < form.modeChoice1.length; i++) {
 					form.modeChoice1[i].checked = false;
 				}
@@ -295,6 +297,7 @@
 			function graphClear(){
 				var form = document.getElementById("DFSForm");
 				var result = document.getElementById("graph");
+				clearAdjMatrix();
 				for (var i = 0; i < form.graph1.length; i++) {
 					form.graph1[i].checked = false;
 				}
@@ -1921,6 +1924,7 @@
 				document.getElementById("instruction").innerHTML = "";
 				document.getElementById("nowState").innerHTML = "提示使用者操作窗";
 				document.getElementById("allState").innerHTML = "";
+				document.getElementById("allState").style.backgroundColor = "#fff";
 				document.getElementById("currentStepDFS").innerHTML = "這是一個關於DFS(深度優先搜尋)的程式\n一開始，請選擇模式(模擬或是測驗)";
 				document.getElementById("currentStepDFS").style.backgroundColor = "#ff6";
 				document.getElementById("chooseMode").style.backgroundColor = "#fff";
@@ -1948,8 +1952,11 @@
 					document.getElementById(duIdString).style.backgroundColor = "#fff";
 					document.getElementById(piuIdString).style.backgroundColor = "#fff";
 					document.getElementById(fuIdString).style.backgroundColor = "#fff";
-					
+					document.getElementById(duIdString).value = "";
+					document.getElementById(piuIdString).value = "";
+					document.getElementById(fuIdString).value = "";
 				}// end for loop
+				isAnswer = 0;
 			}
 
 			function process(){
